@@ -1,0 +1,36 @@
+/* Styling */
+
+
+/* Base */
+:root {
+    --bg: #0b0f14;
+    --surface: #121821;
+    --surface-2: #0e141c;
+    --text: #e8eef6;
+    --muted: #9fb0c5;
+    --line: #ffffff1f;
+
+    --accent: #f05a28;
+    --accent2: #a800be;
+
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+
+.container { max-width: 1200px; margin-inline: auto; padding: 0 20px;}
+section { padding: 64px 0; }
