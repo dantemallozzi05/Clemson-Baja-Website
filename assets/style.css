@@ -4,7 +4,7 @@
 /* Base */
 :root {
     --bg: rgb(90, 27, 92);
-    --surface: #181b20;
+    --surface: rgb(51,51,51);
     --surface-2: #0e141c;
     --text: #e8eef6;
     --muted: #9fb0c5;
@@ -41,6 +41,29 @@ section { padding: 64px 0; }
     background: var(--surface);
     border-bottom: 1px solid var(--line);
     padding: 1.5rem 1rem;
+}
+
+.footer-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
 }
 
 .header-row {
