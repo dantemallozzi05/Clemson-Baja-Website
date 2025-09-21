@@ -36,6 +36,49 @@ a:hover { text-decoration: underline; }
 .container { max-width: 1200px; margin-inline: auto; padding: 0 20px;}
 section { padding: 64px 0; }
 
+.about {
+    position: relative;
+    padding: 0;
+    border-top: 1px solid var(--line);
+}
+
+.about.is-visible .about-tile {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about::before {
+    content: "";
+    position: absolute;
+    inset: -40px 0 -40px 0;
+    background: linear-gradient(180deg, #0000, #00000026 30%, #00000026 70%, #0000);
+    pointer-events: none;
+}
+
+.about-inner {
+    padding: 48px 20px;
+}
+
+.about-inner h2 {
+    margin: 0 0 .5rem;
+    font-size: clamp(1.6rem, 2.2vw + 1rem, 2.4rem);
+    line-height: 1.15;
+}
+
+.about-inner p {
+    margin: .5rem 0 0;
+}
+
+.about-tile {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .55s ease, transform .6s ease;
+}
+
 .brand {
     display: inline-flex;
     align-items: center;
