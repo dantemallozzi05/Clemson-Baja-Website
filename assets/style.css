@@ -55,6 +55,14 @@ section { padding: 64px 0; }
     pointer-events: none;
 }
 
+.about-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    padding: 20px 22px 22px;
+}
+
 .about-inner {
     padding: 48px 20px;
 }
@@ -67,6 +75,13 @@ section { padding: 64px 0; }
 
 .about-inner p {
     margin: .5rem 0 0;
+}
+
+.about-sections {
+    display: grid;
+    gap: 28px;
+    padding-top: 24px;
+    padding-bottom: 48px;
 }
 
 .about-tile {
