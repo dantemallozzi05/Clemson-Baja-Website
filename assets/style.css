@@ -250,6 +250,15 @@ section { padding: 64px 0; }
     justify-content: flex-start;
 }
 
+.join-flyer img {
+    max-width: 600px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    margin: 2rem auto;
+    display: block;
+}
+
 .join-hero {
     max-width: 820px;
     background: var(--surface);
@@ -257,6 +266,7 @@ section { padding: 64px 0; }
     border-radius: 16px;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
     padding: 28px 28px 32px;
+    
 }
 
 .join-hero h1 {
@@ -289,6 +299,17 @@ section { padding: 64px 0; }
 .join-social a:hover img {
     transform: scale(1.20);
     filter: brightness(1) saturate(1.4);
+}
+
+.join-tile {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    padding: 32px 24px;
+    max-width: 720px;
+    width: 100%;
+    text-align: center;
 }
 
 .logo {
