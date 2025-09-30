@@ -37,3 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     observer.observe(about);
 });
+
+// Slideshow Logic
+document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll(".slideshow img");
+    let current = 0;
+
+    function showNextSlide() {
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+    }
+
+    if (slides.length > 0) {
+        slides[current].classList.add("active");
+        setInterval(showNextSlide, 4000);
+    }
+});
