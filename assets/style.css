@@ -19,13 +19,6 @@
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 html { scroll-behavior: smooth; }
-body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-
-}
 
 img { display: block; max-width: 100%; height: auto; }
 
@@ -94,6 +87,19 @@ section { padding: 64px 0; }
     transition: opacity .55s ease, transform .6s ease;
     height: 250px;
 }
+
+body {
+    margin: 0;
+    background: var(--bg);
+    background-image: url("../assets/images/stripes.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--text);
+    font: 16px/1.6 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+
 
 .brand {
     display: inline-flex;
