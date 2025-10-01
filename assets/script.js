@@ -41,7 +41,27 @@ document.addEventListener('DOMContentLoaded', () => {
 // Slideshow Logic
 document.addEventListener("DOMContentLoaded", () => {
     const slides = document.querySelectorAll(".slideshow img");
+    const prevBtn = document.querySelector(".slideshow .prev");
+    const nextBtn = document.querySelector(".slideshow .next");
+    const dotsContainer = document.querySelector(".slideshow .dots");
     let current = 0;
+    let slideInterval;
+
+    slides.forEach((_, index) => {
+        const dot = document.createElement("span");
+        dot.classList.add("dot");
+
+        if (index === 0) { dot.classList.add("active"); }
+
+        dot.addEventListener("click", () => showSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".slideshow .dot");
+
+    function showSlide(index) {
+        slides[current].classList.remove("active");
+    }
 
     function showNextSlide() {
         slides[current].classList.remove("active");
