@@ -44,33 +44,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = document.querySelector(".slideshow .prev");
     const nextBtn = document.querySelector(".slideshow .next");
     const dotsContainer = document.querySelector(".slideshow .dots");
+    if (!slides.length || !dotsContainer) return;
+
     let current = 0;
     let slideInterval;
 
     slides.forEach((_, index) => {
         const dot = document.createElement("span");
-        dot.classList.add("dot");
+        dot.className = "dot" + (index === 0 ? " active" : "");
+        dot.addEventListener("click", () => showSlide(i));
 
-        if (index === 0) { dot.classList.add("active"); }
-
-        dot.addEventListener("click", () => showSlide(index));
         dotsContainer.appendChild(dot);
     });
 
-    const dots = document.querySelectorAll(".slideshow .dot");
+    const dots = dotsContainer.querySelectorAll(".dot");
 
     function showSlide(index) {
         slides[current].classList.remove("active");
+        dots[current].classList.remove("active");
+        
+        current = (index + slides.length) % slides.length;
+
+        slides[current].classList.add("active");
+        dots[current].classList.add("active");
+        resetInterval();
     }
 
-    function showNextSlide() {
-        slides[current].classList.remove("active");
-        current = (current + 1) % slides.length;
-        slides[current].classList.add("active");
+    function showNext() {
+        showSlide(current + 1);
     }
 
-    if (slides.length > 0) {
-        slides[current].classList.add("active");
-        setInterval(showNextSlide, 4000);
+    function showPrev() {
+        showSlide(current - 1);
     }
+
+    function startInterval() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(showNext, 5000);
+    }
+
+    function resetInterval() {
+        startInterval();
+    }
+
+    if (prevBtn) prevBtn.addEventListener("click", showPrev);
+    if (nextBtn) nextBtn.addEventListener("click", showNext);
+
+    slides[0].classList.add("active");
+    startInterval();
 });
