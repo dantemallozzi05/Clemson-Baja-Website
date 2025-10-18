@@ -139,6 +139,44 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
+.comp-stack {
+    height: 100svh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+}
+
+.comp-section {
+    display: grid;
+    height: 100svh;
+    isolation: isolate;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start;
+}
+
+.comp-section::before {
+    background-image: var(--bg);
+    background-position: center;
+    background-size: cover;
+    content: "";
+    filter: brightness(0.75);
+    inset:0;
+    position: absolute; 
+    transition: transform 0.8s ease, filter 0.6s ease;
+    transform: scale(1.04);
+    z-index: 0;
+
+}
+
+.comp-section::after {
+    background: linear-gradient(90deg, rgba(0,0,0,.18) 40%, transparent 70%);
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: 1;
+
+}
+
 .competition-page {
     display: flex;
     flex-direction: column;
