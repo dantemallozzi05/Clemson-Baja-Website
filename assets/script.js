@@ -93,3 +93,18 @@ document.addEventListener("DOMContentLoaded", () => {
     slides[0].classList.add("active");
     startInterval();
 });
+
+// Competition Page animations
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.comp-section'); // select all content on comp page
+
+    if (!sections.length) return;
+
+    const io = new IntersectionObserver((entries) => {
+
+        entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add('is-viible');
+        })
+    });
+
+});
