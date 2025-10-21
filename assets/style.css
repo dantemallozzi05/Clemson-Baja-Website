@@ -608,6 +608,49 @@ body {
     background: color-mix(in srgb, var(--accent), var(--surface-2) 80%);
 }
 
+.page-header {
+    align-items: center;
+    animation: headerFadeIn 0.8s ease forwards;
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--surface), var(--accent2) 15%) 0%,
+        color-mix(in srgb, var(--surface), black 10%) 100%
+    );
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: center;
+    min-height: 220px;
+    /* opacity: 0; */
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    transform: translateY(-20px);
+    width: 100%;
+}
+
+.page-header::before {
+    background: radial-gradient(circle at top, rgba(0,0,0,0.25), transparent 70%);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 2;
+}
+
+.page-title {
+    color: var(--accent);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+}
+
 .site-header {
     background: var(--surface);
     border-bottom: 1px solid var(--line);
