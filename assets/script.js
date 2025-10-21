@@ -1,3 +1,4 @@
+
 // About Us tile logic
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -103,8 +104,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const io = new IntersectionObserver((entries) => {
 
         entries.forEach(e => {
-            if (e.isIntersecting) e.target.classList.add('is-viible');
-        })
-    });
+            if (e.isIntersecting) e.target.classList.add('is-visible');
+            else e.target.classList.remove('is-visible');
+        });
+    }, { root: document.querySelector(".comp-stack") || null, threshold: 0.55 });
 
+    sections.forEach(s => io.observe(s));
+});
+
+// Title Bar logic
+document.addEventListener('DOMContentLoaded', () => {
+    const stack = document.querySelector('.comp-stack');
+    const title = document.getElementById("compTitle");
+
+    if (!stack || !title) return;
+
+    const update = () => {
+        if (stack.scrollTop <= 2) title.classList.add('at-top');
+        else title.classList.remove('at-top');
+    };
+
+    stack.addEventListener('scroll', update, { passive: true });
+    update();
 });
