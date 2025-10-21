@@ -113,17 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Title Bar logic
+// title bar show only when page is scrolled to top
+// Title bar: visible only near the very top
 document.addEventListener('DOMContentLoaded', () => {
-    const stack = document.querySelector('.comp-stack');
-    const title = document.getElementById("compTitle");
+  const title = document.getElementById('compTitle');
+  if (!title) return;
 
-    if (!stack || !title) return;
+  const onScroll = () => {
+    const y = window.scrollY || document.documentElement.scrollTop;
+    title.classList.toggle('at-top', y <= 4);
+  };
 
-    const update = () => {
-        if (stack.scrollTop <= 2) title.classList.add('at-top');
-        else title.classList.remove('at-top');
-    };
-
-    stack.addEventListener('scroll', update, { passive: true });
-    update();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // set initial state
 });
