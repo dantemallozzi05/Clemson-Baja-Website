@@ -615,19 +615,26 @@ body {
     animation: headerFadeIn 0.8s ease forwards;
     background: linear-gradient(
         135deg,
-        color-mix(in srgb, var(--surface), var(--accent2) 15%) 0%,
-        color-mix(in srgb, var(--surface), black 10%) 100%
+        color-mix(in srgb, var(--surface), var(--accent2) 12%) 0%,
+        color-mix(in srgb, var(--surface), black 8%) 100%
     );
     border-bottom: 1px solid var(--line);
     display: flex;
     justify-content: center;
+    margin-top: -1px;
     min-height: 220px;
-    /* opacity: 0; */
+    opacity: 0;
     overflow: hidden;
     position: relative;
     text-align: center;
-    transform: translateY(-20px);
+    transform: translateY(-14px);
     width: 100%;
+    z-index: 2;
+}
+
+.page-header--compact {
+    min-height: 50px;
+    padding: 8px 0;
 }
 
 .page-header::before {
@@ -640,18 +647,17 @@ body {
 }
 
 .page-header .container {
-    position: relative;
     z-index: 2;
 }
 
 .page-title {
-    animation: titleSlideIn 1s ease forwards;
+    animation: titleSlideIn 0.7s ease forwards 0.2s;
     color: var(--accent);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
     font-weight: 800;
     letter-spacing: 1.5px;
     opacity: 0;
-    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
     text-transform: uppercase;
     transform: translateY(10px);
 
@@ -661,6 +667,8 @@ body {
     background: var(--surface);
     border-bottom: 1px solid var(--line);
     padding: 1.5rem 1rem;
+    position: relative;
+    z-index: 3;
 }
 
 .site-header .container {
