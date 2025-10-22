@@ -29,6 +29,8 @@ a:hover { text-decoration: underline; }
 .container { max-width: 1200px; margin-inline: auto; padding: 0 20px;}
 section { padding: 64px 0; }
 
+/* General Styles  */
+
 .about {
     position: relative;
     padding: 0;
@@ -99,8 +101,6 @@ body {
     font: 16px/1.6 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-
-
 .brand {
     display: inline-flex;
     align-items: center;
@@ -137,6 +137,189 @@ body {
 .brand img, 
 .brand span {
     transition: all 0.2s ease-in-out;
+}
+
+.comp-card {
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 14px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+    color: var(--text);
+    max-width: 420px;
+    opacity: 0;
+    padding: 24px 20px;
+    position: absolute;
+    right: clamp(20px,6vw,64px);
+    top: 50%;
+    transform: translateY(-50%) translateX(18px) scale(.80);
+    transition: opacity .55s ease, transform .55s ease, background .3s ease;
+    z-index: 2;
+}
+
+.comp-card h2 {
+    color: var(--accent);
+    margin:0 0 .5rem;
+    text-transform: uppercase;
+}
+
+.comp-card .btn {
+    background: var(--accent);
+    border-radius: 10px;
+    color: #111;
+    display: inline-block;
+    font-weight: 700;
+    margin-top: 1rem;
+    padding: .6rem 1rem;
+    transition: transform .2s ease, background .2s ease;
+}
+
+.comp-card .btn:hover {
+    background: color-mix(in srgb, var(--accent), white 15%);
+    transform: scale(1.10);
+}
+
+.comp-section {
+    display: grid;
+    height: 100svh;
+    isolation: isolate;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start;
+}
+
+.comp-section::before {
+    background: var(--bg);
+    background-position: center;
+    background-size: cover;
+    content: "";
+    filter: brightness(0.75);
+    inset:0;
+    position: absolute; 
+    transition: transform 0.8s ease, filter 0.6s ease;
+    transform: scale(1.04);
+    z-index: 0;
+
+}
+
+.comp-section::after {
+    background: linear-gradient(90deg, rgba(0,0,0,.18) 40%, transparent 70%);
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: 1;
+
+}
+
+.comp-section.is-visible::before {
+    transform: scale(1.0);
+    filter: brightness(.65);
+}
+
+.comp-section.is-visible .comp-card {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.comp-stack {
+    height: 100svh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+}
+
+
+.competition-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    position: relative;
+}
+
+.competition-hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
+}
+
+.competition-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.75);
+}
+
+.competition-sidebar {
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    padding: 24px 28px;
+    max-width: 380px;
+    color: var(--text);
+    backdrop-filter: blur(6px);
+}
+
+.competition-sidebar h2 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+
+.competition-sidebar p {
+    margin: 0.4rem 0;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.competition-sidebar .highlight {
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.competition-sidebar .btn {
+    background: var(--accent);
+    border-radius: 8px;
+    color: #111;
+    display: inline-block;
+    font-weight: 700;
+    margin-top: 1rem;
+    padding: 10px 18px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.competition-sidebar .btn:hover {
+    background: color-mix(in srgb, var(--accent), white 25%);
+    transform: scale(1.10);
+}
+
+.comp-title {
+    backdrop-filter: blur(6px);
+    background: color-mix(in srgb, var(--surface), var(--accent2) 10%);
+    border-bottom: 1px solid var(--line);
+    opacity: 0;
+    position: sticky;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform .35s ease, opacity .35s ease;
+    z-index: 5;
+}
+
+.comp-title.at-top {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.comp-title .container { padding: 14px 20px; }
+.comp-title h1 {
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    margin: 0;
+    text-transform: uppercase;
 }
 
 .footer-bar {
@@ -427,10 +610,65 @@ body {
     background: color-mix(in srgb, var(--accent), var(--surface-2) 80%);
 }
 
+.page-header {
+    align-items: center;
+    animation: headerFadeIn 0.8s ease forwards;
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--surface), var(--accent2) 12%) 0%,
+        color-mix(in srgb, var(--surface), black 8%) 100%
+    );
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: center;
+    margin-top: -1px;
+    min-height: 220px;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    transform: translateY(-14px);
+    width: 100%;
+    z-index: 2;
+}
+
+.page-header--compact {
+    min-height: 50px;
+    padding: 8px 0;
+}
+
+.page-header::before {
+    background: radial-gradient(circle at top, rgba(0,0,0,0.25), transparent 70%);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    
+}
+
+.page-header .container {
+    z-index: 2;
+}
+
+.page-title {
+    animation: titleSlideIn 0.7s ease forwards 0.2s;
+    color: var(--accent);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    opacity: 0;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    transform: translateY(10px);
+
+}
+
 .site-header {
     background: var(--surface);
     border-bottom: 1px solid var(--line);
     padding: 1.5rem 1rem;
+    position: relative;
+    z-index: 3;
 }
 
 .site-header .container {
@@ -526,4 +764,18 @@ body {
     filter: brightness(1) saturate(1.5);
 }
 
+/* Animations */
 
+@keyframes headerFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes titleSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

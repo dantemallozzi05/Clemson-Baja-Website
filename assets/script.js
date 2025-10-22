@@ -1,3 +1,4 @@
+
 // About Us tile logic
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -92,4 +93,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     slides[0].classList.add("active");
     startInterval();
+});
+
+// Competition Page animations
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.comp-section'); // select all content on comp page
+
+    if (!sections.length) return;
+
+    const io = new IntersectionObserver((entries) => {
+
+        entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add('is-visible');
+            else e.target.classList.remove('is-visible');
+        });
+    }, { root: document.querySelector(".comp-stack") || null, threshold: 0.55 });
+
+    sections.forEach(s => io.observe(s));
+});
+
+// Title Bar logic
+// title bar show only when page is scrolled to top
+// Title bar: visible only near the very top
+document.addEventListener('DOMContentLoaded', () => {
+  const title = document.getElementById('compTitle');
+  if (!title) return;
+
+  const onScroll = () => {
+    const y = window.scrollY || document.documentElement.scrollTop;
+    title.classList.toggle('at-top', y <= 4);
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // set initial state
 });
