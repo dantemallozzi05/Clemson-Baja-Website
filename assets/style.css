@@ -16,6 +16,9 @@
     --logo-w: 200px;
 }
 
+/* Header Font Config */
+
+
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 html { scroll-behavior: smooth; }
@@ -656,7 +659,7 @@ body {
     border-bottom: 1px solid var(--line);
     display: flex;
     justify-content: center;
-    min-height: clamp(40vh, 55vh, 65vh);
+    min-height: 80px;
     opacity: 0;
     overflow: hidden;
     position: relative;
@@ -664,10 +667,14 @@ body {
     transform: translateY(-10px);
 }
 
+.page-hero--striped + .comp-stack {
+    margin-top: 0;
+    scroll-snap-type: mandatory;
+}
+
 .page-hero.is-inview::before {
     filter: brightness(0.85);
     transform: scale(1.0);
-    
 }
 
 .page-hero::before {
@@ -698,6 +705,42 @@ body {
     z-index: 2;
 }
 
+.page-hero--striped {
+    align-items: center;
+    background-image: url("../assets/images/stripes.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: center;
+    min-height: clamp(12vh, 19vh, 24vh);
+    overflow: hidden;
+    text-align: center;
+}
+
+.page-hero--striped .page-hero__title {
+    color: var(--accent);
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    position: relative;
+}
+
+.page-hero--striped::before {
+    background: rgba(0,0,0,0.4);
+    content: "";
+    inset: 0;
+    mix-blend-mode: multiply;
+    position: absolute;
+
+    z-index: 0;
+
+}
+
+.page-hero--striped::after {
+    background: linear-gradient(to bottom, transparent 0% var(--bg) 90%);
+    height: 100px;
+}
+
 .page-hero__sub {
     animation: titleIn 0.6s ease 0.25s forwards;
     color: var(--muted);
@@ -711,7 +754,8 @@ body {
 .page-hero__title {
     animation: titleIn 0.7s ease 0.15s forwards;
     color: var(--accent);
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-family: 'Rubik Burned', system-ui;
+    font-size: 24px;
     font-weight: 900;
     letter-spacing: 1px;
     margin: 0;
@@ -737,7 +781,7 @@ body {
 .site-header {
     background: var(--surface);
     border-bottom: 1px solid var(--line);
-    padding: 1.5rem 1rem;
+    padding: 1.2rem 2rem;
     position: relative;
     z-index: 3;
 }
@@ -745,7 +789,7 @@ body {
 .site-header .container {
     max-width: 100%;
     width: 100%;
-    padding-inline: 20px;
+    padding-inline: 16px;
 }
 
 .slideshow {
@@ -837,14 +881,14 @@ body {
 
 /* Animations */
 
-@keyframes headerFadeIn {
+@keyframes heroIn {
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-@keyframes titleSlideIn {
+@keyframes titleIn {
     to {
         opacity: 1;
         transform: translateY(0);
