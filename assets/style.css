@@ -1,4 +1,5 @@
-/* Styling */
+/* Styling Font */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Burned&display=swap');
 
 
 /* Base */
@@ -625,7 +626,7 @@ body {
     display: flex;
     justify-content: center;
     margin-top: -1px;
-    min-height: 220px;
+    min-height: 120px;
     opacity: 0;
     overflow: hidden;
     position: relative;
@@ -659,7 +660,7 @@ body {
     border-bottom: 1px solid var(--line);
     display: flex;
     justify-content: center;
-    min-height: 80px;
+    min-height: 45px;
     opacity: 0;
     overflow: hidden;
     position: relative;
@@ -693,7 +694,7 @@ body {
     background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
     bottom: 0;
     content: "";
-    height: 160px;
+    height: 100px;
     left: 0;
     position: absolute;
     right: 0;
@@ -714,31 +715,35 @@ body {
     border-bottom: 1px solid var(--line);
     display: flex;
     justify-content: center;
-    min-height: clamp(12vh, 19vh, 24vh);
+    min-height: auto;
+    padding: 1.5rem 0;
     overflow: hidden;
     text-align: center;
 }
 
 .page-hero--striped .page-hero__title {
     color: var(--accent);
-    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    font-size: 4rem;
     position: relative;
 }
 
 .page-hero--striped::before {
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.55);
     content: "";
     inset: 0;
     mix-blend-mode: multiply;
     position: absolute;
-
     z-index: 0;
-
 }
 
 .page-hero--striped::after {
     background: linear-gradient(to bottom, transparent 0% var(--bg) 90%);
+    bottom: 0;
     height: 100px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: 1;
 }
 
 .page-hero__sub {
@@ -755,7 +760,7 @@ body {
     animation: titleIn 0.7s ease 0.15s forwards;
     color: var(--accent);
     font-family: 'Rubik Burned', system-ui;
-    font-size: 24px;
+    font-size: 4rem;
     font-weight: 900;
     letter-spacing: 1px;
     margin: 0;
