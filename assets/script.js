@@ -122,3 +122,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Gallery image loader
+async function loadImageList(listUrl) {
+    const res = await fetch(listUrl, { cache: "no-store" });
+    const txt = await res.text();
+    return txt
+        .split(/\r?\n/)
+        .map(s => s.trim())
+        .filter(s => s && /\.(png|jpe?g|webp|gif)(\?.*)?$/i.test(s)); 
+}
+
+const LIST_URL = "PASTE_YOUR_BOX_FILE_DIRECT_LINK_HERE";
+
+document.addEventListener('DOMCOntentLoaded', async () => {
+    const grid = document.getElementById('galleryGrid');
+    
+    if (!grid) return;
+
+    const PAGE_SIZE = 9;
+    let IMAGES = [];
+
+    try { IMAGES = await loadImageList(LIST_URL);}
+    catch { IMAGES = [];}
+
+    if (IMAGES.length === 0) {
+        grid.innerHTML = '<p style="opacity:.7">No images found.</p>';
+        return;
+    }
+
+    let page=0;
+    let autoplay;
+    const prevBtn = document.querySelector('.gallery-nav.prev');
+    const nextBtn = document.querySelector('.gallery-nav.next');
+
+    function renderPage(p) {
+        grid.innerHTML = '';
+        const pages = Math.ceil(IMAGES.length / PAGE_SIZE);
+        const start = (p % pages) = PAGE_SIZE;
+        const end = Math.min(start + PAGE_SIZE, IMAGES.length);
+        for (int i = start; i < end; i++) {
+            li.className = 'gallery-item';
+            li.setAttribute('role','listitem');
+            li.innerHTML = `<img src="${IMAGES[i]}" alt="Gallery image ${i+1}">`;
+            li.addEventListener('click', () => openLightbox(i));
+            grid.appendChild(li);
+        }
+    }
+} )
