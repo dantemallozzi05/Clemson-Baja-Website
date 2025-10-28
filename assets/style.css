@@ -124,7 +124,7 @@ body {
 }
 
 .brand img {
-    height: 42px;
+    height: 54px;
     width: auto;
     display: block;
 }
@@ -533,6 +533,43 @@ body {
     margin-left: auto;
 }
 
+.member-card {
+    align-items: center;
+    background: color-mix(in srgb, var(--surface), black 10%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px; rgba(0,0,0,0.35);
+    display: grid;
+    grid-column: span 12;
+    grid-template-columns: 128px 1fr;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.member-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 18px;
+}
+
+.member-card:hover {
+    border-color: color-mix(in srgb, var(--accent), white 25%);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.45);
+    transform: translateY(-4px);
+}
+
+.member-photo {
+    aspect-ratio: 1/1;
+    background: #111;
+    border-right: 1px solid var(--line);
+    height: 128px;
+    margin: 0;
+    overflow: hidden;
+    width: 128px;
+}
+
+
+
 .nav-list {
     display: flex;
     justify-content: flex-end;
@@ -883,6 +920,40 @@ body {
     transform: scale(1.2);
     filter: brightness(1) saturate(1.5);
 }
+
+.team-hero {
+    border-bottom: 3px solid color-mix(in srgb, var(--accent), white 10%);
+    box-shadow: inset;
+    position: relative;
+}
+
+.team-hero::after {
+    background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent2), white 25%) 50%, var(--accent));
+    content: "";
+    height: 4px;
+    inset: auto 0 0 0;
+    opacity: 0.9;
+    position: absolute;
+
+}
+
+.team-grid {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.team-heading {
+    border-left: 4px solid var(--accent);
+    color: var(--muted);
+    font: 800 clamp(1.2rem, 2.2vw, 1.6rem)/1 'Inter', system-ui;
+    letter-spacing: .8px;
+    margin: 0 0 18px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+
+.team-wrap { padding: 40px 20px 70px }
 
 /* Animations */
 
