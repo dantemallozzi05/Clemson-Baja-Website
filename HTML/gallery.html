@@ -41,7 +41,18 @@
 
     <main id="main" class="container" style="padding: 32px 20px;">
         <h1>GALLERY</h1>
-        <p>Content coming soon...</p>
+        <section class="gallery" aria-label="Photo gallery">
+            <button class="gallery-nav prev" aria-label="Previous page">❮</button>
+            <div class="gallery-grid" id="galleryGrid" role="list"></div>
+            <button class="gallery-nav next" aria-label="Next page">❯</button> 
+        </section>
+
+        <div class="lightbox" id="lightbox" aria-hidden="true">
+            <button class="lightbox-close" aria-label="Close">✕</button>
+            <button class="lightbox-prev" aria-label="Previous">❮</button>
+            <img id="lightboxImg" alt="">
+            <button class="lightbox-next" aria-label="Next">❯</button>
+        </div>
     </main>
 
     <footer class="site-footer">
