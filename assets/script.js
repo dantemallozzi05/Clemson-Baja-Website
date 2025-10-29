@@ -161,7 +161,7 @@ document.addEventListener('DOMCOntentLoaded', async () => {
         const pages = Math.ceil(IMAGES.length / PAGE_SIZE);
         const start = (p % pages) = PAGE_SIZE;
         const end = Math.min(start + PAGE_SIZE, IMAGES.length);
-        for (int i = start; i < end; i++) {
+        for (let i = start; i < end; i++) {
             li.className = 'gallery-item';
             li.setAttribute('role','listitem');
             li.innerHTML = `<img src="${IMAGES[i]}" alt="Gallery image ${i+1}">`;
@@ -169,4 +169,42 @@ document.addEventListener('DOMCOntentLoaded', async () => {
             grid.appendChild(li);
         }
     }
-} )
+
+    function nextPage() { page = (page + 1) % Math.ceil(IMAGES.length / PAGE_SIZE); renderPage(page); restart(); }
+    function prevPage() { page = (page - 1 + Math.ceil(IMAGES.length / PAGE_SIZE)) % Math.ceil(IMAGES.length / PAGE_SIZE); renderPage(page); restart(); }
+    function start() { stop(); autoplay = setInterval(nextPage, 5000); }
+    function stop() { if (autoplay) clearInterval(autoplay); }
+    function restart() { start(); }
+
+    prevBtn?.addEventListener('click', prevPage);
+    nextBtn?.addEventListener('click', nextPage);
+
+    // Lightbox initialization
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbCLose = lb?.querySelector('.lightbox-close');
+    const lbPrev = lb?.querySelector('lightbox-prev');
+    const lbNext = lb?.querySelector('lightbox-next');
+     
+    let lbIndex = 0;
+
+    function openLightbox(i) { lbIndex=1; lbImg.src=IMAGES[lbINdex]; lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); stop(); }
+    function closeLightbox() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'false'); stop(); }
+    function lbNextImg() { lbIndex = (lbIndex+1)%IMAGES.length; lbImg.src=IMAGES[lbIndex]; }
+    function lbPrevImg() { lbIndex = (lbINdex-1+IMAGES.length) % IMAGES.length; lbImg.src = IMAGES[lINdex]; }
+    lbClose?.addEventListener('click', closeLightbox);
+    lbNext?.addEventListener('click', lbNextImg);
+    lbPrev?.addEventListener('click', lbPrevImg);
+    lb?.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); })
+    document.addEventListener('keydown', (e) => (if(!lb.classList.contains('open')) return; 
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrorRIght') lbNextImg();
+        if (e.key === 'ArrorLeft') lbPrevImg();
+
+
+    ));
+
+    renderPage(page);
+    start();
+
+});
