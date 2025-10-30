@@ -133,78 +133,62 @@ async function loadImageList(listUrl) {
         .filter(s => s && /\.(png|jpe?g|webp|gif)(\?.*)?$/i.test(s)); 
 }
 
-const LIST_URL = "PASTE_YOUR_BOX_FILE_DIRECT_LINK_HERE";
+const LIST_URL = ;
 
-document.addEventListener('DOMCOntentLoaded', async () => {
-    const grid = document.getElementById('galleryGrid');
-    
-    if (!grid) return;
+// --- 3x2 Gallery Slider fed by Box direct links ---
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('g6Grid');
+  if (!grid) return;
 
-    const PAGE_SIZE = 9;
-    let IMAGES = [];
+  // Paste your Box *direct* image URLs here.
+  // Tip: add as many as you like; the slider paginates by 6.
+  const IMAGES = [
+    'https://clemson.box.com/shared/static/lqh7frdpvlrsi5j1gdtqn56e2pzygty0.jpg',
+    'https://clemson.box.com/shared/static/etmq2221jd486fd555p8tp3x05x9gev6.jpg',
+    'https://clemson.box.com/shared/static/3hzshoj556hw8dcvvvg33rb38alac774.jpg',
+    'https://clemson.box.com/shared/static/kczt93sqvu15zn34iiqhpe5tcnrs4t54.jpg',
+    'https://clemson.box.com/shared/static/9qgbbuglygf6iemv3526bwfiw38rfh0o.jpg',
+    'https://clemson.box.com/shared/static/w2xjd6zu3thoihhd43b2x86vwvge9i0d.jpg'
+  ];
 
-    try { IMAGES = await loadImageList(LIST_URL);}
-    catch { IMAGES = [];}
+  const PAGE_SIZE = 6;
+  let page = 0;
+  let timer;
 
-    if (IMAGES.length === 0) {
-        grid.innerHTML = '<p style="opacity:.7">No images found.</p>';
-        return;
+  const prevBtn = document.querySelector('.g6-nav.prev');
+  const nextBtn = document.querySelector('.g6-nav.next');
+
+  function pages() { return Math.max(1, Math.ceil(IMAGES.length / PAGE_SIZE)); }
+
+  function renderPage(p) {
+    const totalPages = pages();
+    const start = (p % totalPages) * PAGE_SIZE;
+    const end = Math.min(start + PAGE_SIZE, IMAGES.length);
+    grid.innerHTML = '';
+    for (let i = start; i < end; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'g6-item';
+      btn.setAttribute('role','listitem');
+      btn.innerHTML = `<img loading="lazy" src="${IMAGES[i]}" alt="Gallery image ${i+1}">`;
+      grid.appendChild(btn);
     }
+  }
 
-    let page=0;
-    let autoplay;
-    const prevBtn = document.querySelector('.gallery-nav.prev');
-    const nextBtn = document.querySelector('.gallery-nav.next');
+  function nextPage(){ page = (page + 1) % pages(); renderPage(page); restart(); }
+  function prevPage(){ page = (page - 1 + pages()) % pages(); renderPage(page); restart(); }
 
-    function renderPage(p) {
-        grid.innerHTML = '';
-        const pages = Math.ceil(IMAGES.length / PAGE_SIZE);
-        const start = (p % pages) = PAGE_SIZE;
-        const end = Math.min(start + PAGE_SIZE, IMAGES.length);
-        for (let i = start; i < end; i++) {
-            li.className = 'gallery-item';
-            li.setAttribute('role','listitem');
-            li.innerHTML = `<img src="${IMAGES[i]}" alt="Gallery image ${i+1}">`;
-            li.addEventListener('click', () => openLightbox(i));
-            grid.appendChild(li);
-        }
-    }
+  function start(){ stop(); timer = setInterval(nextPage, 5000); } // 5s autoplay
+  function stop(){ if (timer) clearInterval(timer); }
+  function restart(){ start(); }
 
-    function nextPage() { page = (page + 1) % Math.ceil(IMAGES.length / PAGE_SIZE); renderPage(page); restart(); }
-    function prevPage() { page = (page - 1 + Math.ceil(IMAGES.length / PAGE_SIZE)) % Math.ceil(IMAGES.length / PAGE_SIZE); renderPage(page); restart(); }
-    function start() { stop(); autoplay = setInterval(nextPage, 5000); }
-    function stop() { if (autoplay) clearInterval(autoplay); }
-    function restart() { start(); }
+  prevBtn?.addEventListener('click', prevPage);
+  nextBtn?.addEventListener('click', nextPage);
 
-    prevBtn?.addEventListener('click', prevPage);
-    nextBtn?.addEventListener('click', nextPage);
+  if (IMAGES.length === 0) {
+    grid.innerHTML = '<p style="opacity:.7">Add Box direct image URLs to IMAGES[] in script.js.</p>';
+    return;
+  }
 
-    // Lightbox initialization
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    const lbCLose = lb?.querySelector('.lightbox-close');
-    const lbPrev = lb?.querySelector('lightbox-prev');
-    const lbNext = lb?.querySelector('lightbox-next');
-     
-    let lbIndex = 0;
-
-    function openLightbox(i) { lbIndex=1; lbImg.src=IMAGES[lbINdex]; lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); stop(); }
-    function closeLightbox() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'false'); stop(); }
-    function lbNextImg() { lbIndex = (lbIndex+1)%IMAGES.length; lbImg.src=IMAGES[lbIndex]; }
-    function lbPrevImg() { lbIndex = (lbINdex-1+IMAGES.length) % IMAGES.length; lbImg.src = IMAGES[lINdex]; }
-    lbClose?.addEventListener('click', closeLightbox);
-    lbNext?.addEventListener('click', lbNextImg);
-    lbPrev?.addEventListener('click', lbPrevImg);
-    lb?.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); })
-    document.addEventListener('keydown', (e) => (if(!lb.classList.contains('open')) return; 
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrorRIght') lbNextImg();
-        if (e.key === 'ArrorLeft') lbPrevImg();
-
-
-    ));
-
-    renderPage(page);
-    start();
-
+  renderPage(page);
+  start();
 });
