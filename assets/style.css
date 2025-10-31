@@ -565,10 +565,12 @@ header {
 .lightbox {
     background: rgba(0,0,0,0.8);
     display: grid;
+    inset: 0;
     place-items: center;
     pointer-events: none;
-    opacity: .25s ease;
-    transition: opacity .25s ease;
+    position: fixed;
+    opacity: 0;
+    transition: opacity .35s ease;
     z-index: 1000;
 }
 
@@ -580,7 +582,12 @@ header {
     box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     max-height: 86vh;
     max-width: min(92vw, 1400px);
+    opacity: 0;
+    transform: scale(.94);
+    transition: transform;
 }
+
+.lightbox.open img { transform: scale(1); opacity: 1;}
 
 .lightbox-close,
 .lightbox-prev,
@@ -605,6 +612,14 @@ header {
 .lightbox-close:hover,
 .lightbox-prev:hover,
 .lightbox-next:hover { background: rgba(0,0,0,0.65); }
+
+body.blurred header,
+body.blurred #main,
+body.blurred footer {
+    filter: blur(6px);
+    transition: filter .25s ease;
+}
+body.blurred{ overflow: hidden;}
 
 .logo {
     display: inline-flex;
