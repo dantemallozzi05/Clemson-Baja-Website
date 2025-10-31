@@ -614,8 +614,9 @@ header {
 .lightbox-next:hover { background: rgba(0,0,0,0.65); }
 
 body.blurred header,
-body.blurred #main,
-body.blurred footer {
+body.blurred footer,
+body.blurred #main > *:not(.lightbox)
+ {
     filter: blur(6px);
     transition: filter .25s ease;
 }
