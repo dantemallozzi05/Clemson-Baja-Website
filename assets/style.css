@@ -10,6 +10,7 @@
     --text: #e8eef6;
     --muted: #9fb0c5;
     --line: #ffffff1f;
+    --header-h: 0px;
 
     --accent: #F56600;
     --accent2: #a800be;
@@ -91,7 +92,7 @@ section { padding: 64px 0; }
     opacity: 0;
     transform: translateY(40px);
     transition: opacity .55s ease, transform .6s ease;
-    height: 250px;
+    height: 600px;
 }
 
 body {
@@ -184,11 +185,10 @@ body {
 
 .comp-section {
     display: grid;
-    height: 100svh;
+    min-height: 100svh;
     isolation: isolate;
     overflow: hidden;
     position: relative;
-    scroll-snap-align: start;
 }
 
 .comp-section::before {
@@ -214,6 +214,10 @@ body {
 
 }
 
+.comp-section.first {
+    min-height = calc(100svh - var(--header-h));
+}
+
 .comp-section.is-visible::before {
     transform: scale(1.0);
     filter: brightness(.65);
@@ -225,9 +229,9 @@ body {
 }
 
 .comp-stack {
-    height: 100svh;
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
+    height: auto;
+    overflow: auto;
+    scroll-snap-type: none;
 }
 
 
