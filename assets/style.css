@@ -64,7 +64,12 @@ section { padding: 64px 0; }
 }
 
 .about-inner {
+    align-items: center;
+    display: flex;
+    gap: 32px;
+    justify-content: space-between;
     padding: 48px 20px;
+    flex-wrap: wrap;
 }
 
 .about-inner h2 {
@@ -92,7 +97,19 @@ section { padding: 64px 0; }
     opacity: 0;
     transform: translateY(40px);
     transition: opacity .55s ease, transform .6s ease;
-    height: 600px;
+    height: 850px;
+}
+
+.about-video {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.about-video video {
+    width: 100%;
+    max-width: 720px;
 }
 
 body {
