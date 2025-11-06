@@ -89,6 +89,11 @@ section { padding: 64px 0; }
     padding-bottom: 48px;
 }
 
+.about-text {
+    flex: 1 1 50%;
+    min-width: 280px;
+}
+
 .about-tile {
     background: var(--surface);
     border-top: 1px solid var(--line);
@@ -103,13 +108,14 @@ section { padding: 64px 0; }
 .about-video {
     align-items: center;
     display: flex;
+    flex: 1 1 45%;
     justify-content: center;
     margin-top: 48px;
 }
 
 .about-video video {
     width: 100%;
-    max-width: 720px;
+    max-width: 840px;
 }
 
 body {
