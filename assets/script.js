@@ -232,3 +232,19 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPage(page);
 });
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('.main-nav a');
+  if (!links.length) return;
+
+  const here = new URL(window.location.href);
+  links.forEach(a => a.removeAttribute('aria-current'));
+
+  const match = Array.from(links).find(a => {
+    const url = new URL(a.getAttribute('href'), here.origin);
+    return url.pathname.replace(/\/+$/, '') === here.pathname.replace(/\/+$/, '');
+  });
+
+  if (match) match.setAttribute('aria-current', 'page');
+});
+
