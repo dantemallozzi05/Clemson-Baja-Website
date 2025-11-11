@@ -1121,6 +1121,20 @@ body.blurred{ overflow: hidden;}
     transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
 
+.s-logo:hover {
+    border-color: color-mix(in srgb, var(--accent), white 20%);
+    box-shadow: 0 12px 28px rgba(0,0,0,.45);
+    transform: translateY(-3px);
+}
+
+.s-logo img {
+    filter: brightness(.98) contrast(1.02);
+    height: auto;
+    max-height: 70%;
+    object-fit: contain;
+    width: auto;
+}
+
 .site-header {
     background: var(--surface);
     position: relative;
@@ -1269,6 +1283,7 @@ body.blurred{ overflow: hidden;}
 .tier {
     border-top: 1px solid var(--line);
     padding: 28px 0 42px;
+    position: relative;
 }
 
 .tier-head {
@@ -1287,6 +1302,12 @@ body.blurred{ overflow: hidden;}
     padding: 6px 12px;
     text-transform: uppercase;
 }
+
+.tier--diamond .tier-badge { --badge-bg: #579fcf;  }
+.tier--platinum .tier-badge { --badge-bg: color-mix(in srgb, white, var(--accent2) 16%); color:#111; }
+.tier--gold .tier-badge { --badge-bg: #f2b705 }
+.tier--silver .tier-badge { --badge-bg: #cfd6e1; color: #111; }
+.tier--bronze .tier-badge { --badge-bg: #cd7f32 }
 
 .tier-note {
     color: var(--muted);

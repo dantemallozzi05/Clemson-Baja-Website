@@ -1,7 +1,5 @@
 .DS_Store
-
-*.exe
-*.msi
 /assets/gallery/
 /notes.txt
 /assets/docs/
+/assets/*.json
