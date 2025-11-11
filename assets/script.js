@@ -236,30 +236,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('.main-nav a');
   if (!links.length) return;
 
-  const here = new URL(window.location.href);
-  links.forEach(a => a.removeAttribute('aria-current'));
-
-  const match = Array.from(links).find(a => {
-    const url = new URL(a.getAttribute('href'), here.origin);
-    return url.pathname.replace(/\/+$/, '') === here.pathname.replace(/\/+$/, '');
+  const currentPath = window.location.pathname.split('/').pop(); 
+  links.forEach(a => {
+    a.removeAttribute('aria-current');
+    const hrefFile = a.getAttribute('href').split('/').pop();
+    if (hrefFile === currentPath || (currentPath === '' && hrefFile === 'index.html')) {
+      a.setAttribute('aria-current', 'page');
+    }
   });
-
-  if (match) match.setAttribute('aria-current', 'page');
 });
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const links = document.querySelectorAll('.main-nav a, .nav-list a');
-
-//     if (!links.length) return;
-
-//     const here = new URL(location.href);
-//     const norm = p => p.replace(/index\.html$/,'').replace(/\/+$/,'');
-//     links.forEach(a => a.removeAttribute('aria-current'));
-
-//     const match = Array.from(links).find(a => {
-//         const url new URL(a.getAttribute('href'), here.origin);
-//         return norm(url.pathname) === norm(here.pathname);
-//     });
-
-//     if (match) match.setAttribute('aria-current', 'page');
-// });
