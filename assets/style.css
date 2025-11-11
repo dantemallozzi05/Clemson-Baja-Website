@@ -80,10 +80,20 @@ section { padding: 64px 0; }
     line-height: 1.15;
 }
 
+.about-inner h2::after {
+    background: var(--accent);
+    border-radius: 2px;
+    content: "";
+    display: block;
+    height: 3px;
+    margin-top: 6px;
+    opacity: .9;
+    width: 64px;
 
+}
 
 .about-inner p {
-    margin: .5rem 0 0;
+    margin: .4rem 0 .9rem;
 }
 
 .about-sections {
@@ -117,7 +127,10 @@ section { padding: 64px 0; }
 }
 
 .about-tile::before {
-    background: linear-gradient(180deg, color-mix(in srgb, var(--accent), white 8%), var(--accent));
+    background: 
+        radial-gradient(70% 50% at 90% 8%, rgba(245,102,0,.06), transparent 60%),
+        radial-gradient(60% 45% at 8% 90%, rgba(82,45,128,.10), transparent 55%),
+        linear-gradient(180deg, #0000, #00000026 30%, #00000026 70%, #0000);
     bottom: 0;
     box-shadow: 
         0 0 14px rgba(245, 102, 0, 0.28),
@@ -138,12 +151,13 @@ section { padding: 64px 0; }
 }
 
 .about-video video {
-    border-radius: 14px;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.4);
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    height: auto;
     width: 100%;
     max-width: 840px;
     object-fit: cover;
-    transform: translateX(6%);
+    transform: none;
     
 }
 
@@ -731,6 +745,16 @@ body.blurred{ overflow: hidden;}
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.25);
 }
 
+.media-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.35);
+    padding: 10px;
+    position: sticky;
+    top: 84px;
+}
+
 .member-card {
     align-items: center;
     background: color-mix(in srgb, var(--surface), black 10%);
@@ -1256,8 +1280,12 @@ body.blurred{ overflow: hidden;}
 
 @media (max-width: 1023px) {
     .about-inner { flex-wrap: wrap; }
+    .about-text {padding-left: 22px; }
     .about-text, .about-video { flex: 1 1 100%; }
     .about-video { justify-content: center; }
     .about-video video { max-width: 720px; transform: none; }
+    .media-card { position: static; }
 }
 ``` :contentReference[oaicite:1]{index=1}
+
+@media (max-width:)
