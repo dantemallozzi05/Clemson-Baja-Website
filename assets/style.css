@@ -709,9 +709,30 @@ header {
 .lightbox-next:hover { background: rgba(0,0,0,0.65); }
 
 .logo-grid {
+    border-radius: 14px;
     display: grid;
+    padding: 12px;
+    position: relative;
     gap: 14px;
     grid-template-columns: repeat(5, minmax(140px, 1fr));
+    z-index: 0;
+}
+
+.logo-grid::before {
+    background: 
+        linear-gradient(180deg,
+        rgba(10, 6, 20, .60),
+        rgba(10, 6, 20, .48));
+    backdrop-filter: blur(2px) saturate(115%);
+    border: 1px solid color-mix(in srgb, var(--line), black 25%);
+    border-radius: 16px;
+    box-shadow: 
+        0 12px 28px rgba(0,0,0,0.45);
+        inset 0 1px 0 rgba(255,255,255,.84);
+    content: ""; 
+    inset: -6px;
+    position: absolute;
+    z-index: -1;
 }
 
 body.blurred header,
@@ -1108,10 +1129,12 @@ body.blurred{ overflow: hidden;}
 
 .s-logo {
     aspect-ratio: 3/2;
-    background: var(--surface);
-    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(22, 14, 36, .92), rgba(16, 10, 26, .92));
+    border: 1px solid color-mix(in srgb, var(--line), white 6%);
     border-radius: 12px;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    box-shadow: 
+        0 8px 18px rgba(0,0,0,0.50);
+        inset 0 1px 0 rgba(255, 255, 255, .85);
     color: color-mix(in srgb, var(--muted), white 10%);
     display: grid;
     letter-spacing: .4px;
@@ -1128,11 +1151,22 @@ body.blurred{ overflow: hidden;}
 }
 
 .s-logo img {
-    filter: brightness(.98) contrast(1.02);
+    border-color: color-mix(in srgb, var(--accent), white 22%);
+    box-shadow:
+        0 14px 32px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(245, 102,0,0.12);
+    filter: brightness(.98) contrast(1.02) grayscale(18%);
     height: auto;
-    max-height: 70%;
+    max-height: 78%;
     object-fit: contain;
+    transform: translateY(-4px);
+    transition: filter .18s ease, transform .18s ease;
     width: auto;
+}
+
+.s-logo:hover img {
+    filter: grayscale(8%) brightness(1.04);
+    transform: translateZ(0);
 }
 
 .site-header {
@@ -1281,9 +1315,25 @@ body.blurred{ overflow: hidden;}
 .team-wrap { padding: 40px 20px 70px }
 
 .tier {
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--tier-line);
     padding: 28px 0 42px;
     position: relative;
+    --tier-line: color-mix(in srgb, var(--accent), #000 65%)
+}
+
+.tier::before {
+    background: 
+        radial-gradient(70% 50% at 90% 8%, rgba(245,102,0,.08), transparent 60%),
+        radial-gradient(60% 45% at 8% 90%, rgba(82,45,128,.12), transparent 55%),
+        linear-gradient(180deg, #0000, #00000026 30%, #00000026 70%, #0000);
+    box-shadow: 
+        0 0 14px rgba(245,102,0,.25),
+        0 0 30px rgba(245,102,0.14);
+    bottom: 0; top: 0; left: 0;
+    content: "";
+    opacity: .95;
+    position: absolute;
+    width: 6px;
 }
 
 .tier-head {
@@ -1291,6 +1341,10 @@ body.blurred{ overflow: hidden;}
     display: flex;
     gap: 12px;
     margin-bottom: 14px;
+}
+
+.tier .tier-head {
+    position: relative;
 }
 
 .tier-badge {
@@ -1303,7 +1357,7 @@ body.blurred{ overflow: hidden;}
     text-transform: uppercase;
 }
 
-.tier--diamond .tier-badge { --badge-bg: #579fcf;  }
+.tier--diamond .tier-badge { --badge-bg: #7daecf;  }
 .tier--platinum .tier-badge { --badge-bg: color-mix(in srgb, white, var(--accent2) 16%); color:#111; }
 .tier--gold .tier-badge { --badge-bg: #f2b705 }
 .tier--silver .tier-badge { --badge-bg: #cfd6e1; color: #111; }
