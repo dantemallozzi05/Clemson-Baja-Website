@@ -23,7 +23,7 @@ Navigate to root directory in file explorer, and open ```index.html``` in any mo
 
 ## Contact
 
-**Dante Mallozzi**
+**Dante Mallozzi** - dante.mallozzi@hotmail.com
 
 Computer Science - Clemson University
 
