@@ -69,6 +69,7 @@ section { padding: 64px 0; }
     gap: clamp(24px, 4vw, 48px);
     justify-content: space-between;
     padding: 48px 20px;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
@@ -523,8 +524,7 @@ body {
 .g6-nav:hover { transform: translateY(-1px); background: var(--surface-2);}
 
 header {
-    border-bottom: 4px solid var(--accent);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25))
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 .header-row {
@@ -796,13 +796,7 @@ body.blurred{ overflow: hidden;}
 }
 
 .media-card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    box-shadow: 0 10px 24px rgba(0,0,0,.35);
-    padding: 10px;
-    position: sticky;
-    top: 84px;
+    position: static;
 }
 
 .member-card {
@@ -811,7 +805,7 @@ body.blurred{ overflow: hidden;}
     border: 1px solid var(--line);
     border-radius: 16px;
     box-shadow: 0 10px 24px; rgba(0,0,0,0.35);
-    display: grid;
+    display: grid;a
     grid-column: span 12;
     grid-template-columns: 128px 1fr;
     transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
@@ -1171,13 +1165,15 @@ body.blurred{ overflow: hidden;}
 
 .site-header {
     background: var(--surface);
+    padding: 16px 22px;
     position: relative;
+
 }
 
 .site-header::after {
     background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
     content: "";
-    height: 4px;
+    height: 6px;
     position: absolute;
     left: 0; right: 0; bottom: 0;
 
@@ -1271,13 +1267,12 @@ body.blurred{ overflow: hidden;}
     width: 28px;
     height: 28px;
     display: block;
-    filter: brightness(0) invert(1);
     transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .social-links a:hover img {
     transform: scale(1.2);
-    filter: brightness(1) saturate(1.5);
+    filter: brightness(1.2) saturate(1.5);
 }
 
 .team-hero {
@@ -1347,6 +1342,17 @@ body.blurred{ overflow: hidden;}
     position: relative;
 }
 
+.tier .tier-head::after {
+    background: linear-gradient(90deg,
+        transparent,
+        color-mix(in srgb, var(--accent), white 10%), 
+        transparent);
+    content: "";
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
 .tier-badge {
     --badge-bg: var(--accent);
     background: linear-gradient(120deg, var(--badge-bg), color-mix(in srgb, var(--badge-bg), white 20%));
@@ -1403,9 +1409,10 @@ body.blurred{ overflow: hidden;}
 @media (min-width: 1024px) {
     .about-inner {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: space-between;
         gap: 32px;
+        flex-direction: column;
         flex-wrap: nowrap;
         padding: 48px 20px;
     }
@@ -1438,4 +1445,6 @@ body.blurred{ overflow: hidden;}
 }
 ``` :contentReference[oaicite:1]{index=1}
 
-@media (max-width:)
+@media (max-width: 1024px) { .logo-grid { padding: 14px; } }
+@media (max-width: 640px) { .logo-grid { padding: 12px; } }
+

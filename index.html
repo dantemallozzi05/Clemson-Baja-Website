@@ -41,10 +41,10 @@
             <div class="hero-bg">
                 <div class="slideshow">
 
-                    <img src="assets/pictures/TEAMPIC.JPG" class="active" alt="Slide 1">
-                    <img src="assets/pictures/baja2.jpg" alt="Slide 2">
-                    <img src="assets/pictures/baja3.jpg" alt="Slide 3">
-                    <img src="assets/pictures/baja.jpg" alt="Slide 4">
+                    <img src="assets/pictures/TEAMPIC.JPG" class="active" alt="Slide 1"  loading="eager" fetchpriority="high">
+                    <img src="assets/pictures/baja2.jpg" alt="Slide 2"  loading="lazy">
+                    <img src="assets/pictures/baja3.jpg" alt="Slide 3"  loading="lazy">
+                    <img src="assets/pictures/baja.jpg" alt="Slide 4"  loading="lazy">
                     
 
                     <button class="prev">&#10094;</button>
@@ -94,8 +94,8 @@
                     </div>
                     <aside class="media-card">
                         <div class="about-video">
-                            <video controls muted playsinline>
-                                <source src="assets/videos/Sequence 01.mp4" type="video/mp4">
+                            <video controls muted playsinline preload="metadata">
+                                <source src="assets/videos/Sequence 01.mp4" type="video/mp4" preload="metadata">
                             </video>
                         </div>
                     </aside>
