@@ -197,12 +197,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('.main-nav a');
   if (!links.length) return;
 
-  const currentPath = window.location.pathname.split('/').pop(); 
+  // Normalize current path: treat `/about/` and `/about/index.html` as the same
+  const currentPath = window.location.pathname.replace(/\/index\.html$/, '/');
+
   links.forEach(a => {
     a.removeAttribute('aria-current');
-    const hrefFile = a.getAttribute('href').split('/').pop();
-    if (hrefFile === currentPath || (currentPath === '' && hrefFile === 'index.html')) {
+
+    const linkPath = new URL(a.getAttribute('href'), window.location.origin)
+      .pathname
+      .replace(/\/index\.html$/, '/');
+
+    if (linkPath === currentPath) {
       a.setAttribute('aria-current', 'page');
     }
   });
 });
+
