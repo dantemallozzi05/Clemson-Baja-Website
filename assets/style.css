@@ -657,7 +657,6 @@ body {
     width: 100%;
 }
 
-
 .g6-item:hover img {
     filter: brightness(.95);
     transform: scale(1.05);

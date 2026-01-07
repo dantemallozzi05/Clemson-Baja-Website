@@ -157,8 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'carolina-comp-32.webp'
   ];
 
-  const THUMB_BASE = '/assets/gallery/thumbs/';
-  const FULL_BASE  = '/assets/gallery/full/';
+  const THUMB_BASE = 'assets/gallery/thumbs/';
+  const FULL_BASE  = 'assets/gallery/full/';
 
   const PAGE_SIZE = 9;
   let page = 0;
