@@ -636,9 +636,7 @@ body {
 }
 
 .g6-grid {
-    aspect-ratio: 4 / 3;
-    border-radius: 14px;
-    overflow: hidden;
+    position: relative;
 }
 
 .g6-item {
@@ -646,8 +644,17 @@ body {
     border: 1px solid var(--line);
     border-radius: 12px;
     cursor: pointer;
+    margin-bottom: 14px;
     overflow: hidden;
-    position: relative;
+    width: calc(33.333% - 14px);
+}
+
+.g6-item img {
+    display: block;
+    height: auto;
+    object-fit: cover;
+    transition: filter .18s ease, transform .18s ease;
+    width: 100%;
 }
 
 .g6-item.is-big {
@@ -668,12 +675,6 @@ body {
 .g6-item.is-small {
     aspect-ratio: 1 / 1;
     grid-column: span 3;
-}
-
-.g6-item img {
-    height: 100%;
-    object-fit: cover;
-    width: 100%;
 }
 
 .g6-item:hover img { transform: scale(1.05); filter: brightness(.95);}
@@ -949,7 +950,7 @@ header {
     max-width: min(92vw, 1400px);
     opacity: 0;
     transform: scale(.94);
-    transition: transform;
+    transition: transform .25s ease, opacity .25s ease;
 }
 
 .lightbox.open img { transform: scale(1); opacity: 1;}
@@ -1680,10 +1681,6 @@ body.blurred{ overflow: hidden;}
 }
 @media (min-width: 960px) {
     .member-card { grid-column: span 4; }
-}
-
-@media (max-width: 900px) { 
-    .g6-grid{ grid-template-columns: repeat(2,1fr);} 
 }
 
 @media (min-width: 900px){
