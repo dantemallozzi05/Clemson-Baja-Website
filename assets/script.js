@@ -101,6 +101,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = document.getElementById('g6Grid');
   if (!grid) return;
 
+  let msnry = null;
+
+  function initMasonry() {
+    if (!window.Masonry || !window.imagesLoaded) return;
+
+    if (msnry) {
+      msnry.destroy();
+      msnry = null;
+    }
+
+    imagesLoaded(grid, () => {
+      msnry = new Masonry(grid, {
+        gutter: 14,
+        itemSelector: '.g6-item',
+        percentPosition: true
+      });
+    });
+  }
+
+
   // List filenames ONCE (must exist in both thumbs/ and full/)
   const FILES = [
     'carolina-comp-01.webp',
@@ -220,7 +240,7 @@ function pickWeighted(rng, items) {
       }
       // anchor first tile
       layout[0] = 'is-big';
-      
+
       const cls = layout[i - start];
       btn.className = `g6-item ${cls}`;
 
@@ -243,6 +263,8 @@ function pickWeighted(rng, items) {
       btn.addEventListener('click', () => openLightbox(i));
       grid.appendChild(btn);
     }
+    initMasonry();
+
   }
 
   function nextPage() { page = (page + 1) % pages(); renderPage(page); }
