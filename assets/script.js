@@ -73,6 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(s => io.observe(s));
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const root = document.getElementById('nyCountdown');
+  if (!root) return;
+
+  const targetStr = root.getAttribute('data-target');
+  const target = new Date(targetStr);
+
+  const elDays = document.getElementById('nyDays');
+  const elHours = document.getElementById('nyHours');
+  const elMins = document.getElementById('nyMins');
+  const elSecs = document.getElementById('nySecs');
+
+  const pad2 = (n) => String(n).padStart(2, '0');
+})
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const hero = document.querySelector('.page-hero');
@@ -104,24 +119,34 @@ document.addEventListener('DOMContentLoaded', () => {
   let msnry = null;
 
   function initMasonry() {
-    if (!window.Masonry || !window.imagesLoaded) return;
+  if (!window.Masonry || !window.imagesLoaded) return;
 
-    if (msnry) {
-      msnry.destroy();
-      msnry = null;
-    }
-
-    imagesLoaded(grid, () => {
-      msnry = new Masonry(grid, {
-        gutter: 14,
-        itemSelector: '.g6-item',
-        percentPosition: true
-      });
-    });
+  if (msnry) {
+    msnry.destroy();
+    msnry = null;
   }
 
+  // Create Masonry immediately
+  msnry = new Masonry(grid, {
+    gutter: 14,
+    itemSelector: '.g6-item',
+    columnWidth: '.g6-item',
+    percentPosition: true
+  });
 
-  // List filenames ONCE (must exist in both thumbs/ and full/)
+  // Re-layout AS EACH IMAGE LOADS
+  imagesLoaded(grid)
+    .on('progress', () => {
+      if (msnry) msnry.layout();
+    })
+    .on('always', () => {
+      if (msnry) msnry.layout();
+    });
+}
+
+
+
+  // List filenames 
   const FILES = [
     'carolina-comp-01.webp',
     'carolina-comp-02.webp',
@@ -157,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'carolina-comp-32.webp'
   ];
 
-  const THUMB_BASE = 'assets/gallery/thumbs/';
-  const FULL_BASE  = 'assets/gallery/full/';
+  const THUMB_BASE = '../assets/gallery/thumbs/';
+  const FULL_BASE  = '../assets/gallery/full/';
 
   const PAGE_SIZE = 9;
   let page = 0;
@@ -220,52 +245,51 @@ function pickWeighted(rng, items) {
 
 
     for (let i = start; i < end; i++) {
-      const btn = document.createElement('button');
+      const cls = pickWeighted(rng, weights); // <-- you were missing this
 
-      const ROWS = [
-        ['is-big','is-tall'],                 // 8+4
-        ['is-wide','is-wide'],                // 6+6
-        ['is-tall','is-tall','is-tall'],      // 4+4+4
-        ['is-wide','is-small','is-small'],    // 6+3+3
-        ['is-small','is-small','is-small','is-small'] // 3+3+3+3
-      ];
-
-      const layout = [];
-      while (layout.length < (end - start)) {
-        const row = ROWS[Math.floor(rng() * ROWS.length)];
-        for (const c of row) {
-          if (layout.length >= (end - start)) break;
-          layout.push(c);
-        }
-      }
-      // anchor first tile
-      layout[0] = 'is-big';
-
-      const cls = layout[i - start];
+      const btn = document.createElement('div');
       btn.className = `g6-item ${cls}`;
+      btn.setAttribute('role', 'button');
+      btn.tabIndex = 0;
+
+      btn.dataset.full = fullUrl(i);
+      btn.dataset.i = String(i);
 
 
-      btn.setAttribute('role', 'listitem');
-
-      const t = thumbUrl(i);
-      const f = fullUrl(i);
 
       btn.innerHTML = `
-        <img
-          loading="lazy"
-          decoding="async"
-          src="${t}"
-          data-full="${f}"
-          alt="Gallery image ${i + 1}"
-        >
+        <img loading="eager" decoding="async"
+             src="${thumbUrl(i)}"
+             alt="Gallery image ${i + 1}">
       `;
 
-      btn.addEventListener('click', () => openLightbox(i));
       grid.appendChild(btn);
     }
+
+
+
     initMasonry();
 
   }
+
+  grid.addEventListener('click', (e) => {
+    const tile = e.target.closest('.g6-item');
+    if (!tile) return;
+
+    // This is the only truth that matters
+    lbIndex = Number(tile.dataset.i);
+
+    // Open the exact image you clicked
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('blurred');
+
+    lbImg.src = tile.dataset.full;
+  });
+
+
+
+
 
   function nextPage() { page = (page + 1) % pages(); renderPage(page); }
   function prevPage() { page = (page - 1 + pages()) % pages(); renderPage(page); }
@@ -275,17 +299,15 @@ function pickWeighted(rng, items) {
   function openLightbox(i) {
     lbIndex = i;
 
-    // Load FULL image only in lightbox
-    lbImg.onload = () => {
-      lb.classList.add('open');
-      lb.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('blurred');
-    };
-
-    lbImg.onerror = () => console.error('Lightbox failed to load:', fullUrl(lbIndex));
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('blurred');
 
     lbImg.src = fullUrl(lbIndex);
   }
+
+
+
 
   function closeLightbox() {
     lb.classList.remove('open');
