@@ -147,15 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
     msnry = null;
   }
 
-  // Create Masonry immediately
+  
   msnry = new Masonry(grid, {
     gutter: 14,
     itemSelector: '.g6-item',
-    columnWidth: '.g6-item',
+    columnWidth: '.g6-sizer',
     percentPosition: true
   });
 
-  // Re-layout AS EACH IMAGE LOADS
+  msnry.reloadItems();
+  msnry.layout();
+
+  
   imagesLoaded(grid)
     .on('progress', () => {
       if (msnry) msnry.layout();
@@ -254,7 +257,7 @@ function pickWeighted(rng, items) {
     const start = (p % totalPages) * PAGE_SIZE;
     const end = Math.min(start + PAGE_SIZE, FILES.length);
 
-    grid.innerHTML = '';
+    grid.innerHTML = '<div class="g6-sizer"></div>';
 
     const rng = mulberry32(12345 + p * 999); // stable per page
     const weights = [
@@ -295,6 +298,12 @@ function pickWeighted(rng, items) {
 
   grid.addEventListener('click', (e) => {
     const tile = e.target.closest('.g6-item');
+    console.log("CLICKED:", {
+    i: tile.dataset.i,
+    full: tile.dataset.full,
+    thumb: tile.querySelector("img")?.src
+  });
+
     if (!tile) return;
 
     // This is the only truth that matters
