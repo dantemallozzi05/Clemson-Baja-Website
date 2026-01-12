@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.isIntersecting) e.target.classList.add('is-visible');
             else e.target.classList.remove('is-visible');
         });
-    }, { root: document.querySelector(".comp-stack") || null, threshold: 0.55 });
+    }, { root:  null, threshold: 0.55 });
 
     sections.forEach(s => io.observe(s));
 });
@@ -86,7 +86,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const elSecs = document.getElementById('nySecs');
 
   const pad2 = (n) => String(n).padStart(2, '0');
-})
+
+  function tick() {
+    const now = new Date();
+    let diff = target.getTime() - now.getTime();
+
+    if (diff < 0) diff = 0;
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+
+    if (elDays) elDays.textContent = String(days);
+    if (elHours) elHours.textContent = pad2(hours);
+    if (elMins) elMins.textContent = pad2(mins);
+    if (elSecs) elSecs.textContent = pad2(secs);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+});
 
 
 document.addEventListener('DOMContentLoaded', () => {
