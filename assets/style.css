@@ -574,10 +574,31 @@ body {
 
 }
 
+.donate-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+}
+
 .donate-card {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+    padding: 22px 22px 20px;
+}
+
+.donate-card--intro h2{
+    margin: 0 0 8px;
+    text-transform: uppercase;
+}
+
+.donate-tile {
+    display: grid;
+    gap: 18px;
+    margin: 36px auto 70px;
+    max-width: 900px;
 }
 
 .faq {
