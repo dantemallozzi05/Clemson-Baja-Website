@@ -48,13 +48,34 @@
                     Thanks to our generous sponsors, our team is able to design, build, and race effectively. Thank you!
                 </p>
                 <div class="sponsor-cta">
-                    <a class="btn" href="mailto:clemsonbajasae@gmail.com">Become a Sponsor!</a>
+                    <div class="sponsor-popover-wrap">
+                        <button
+                            class="btn sponsor-popover-trigger"
+                            type="button"
+                            id="sponsorEmailBtn"
+                            aria-haspopup="dialog"
+                            aria-expanded="false"
+                            aria-controls="sponsorEmailPopover"
+                        > Become a Sponsor!</button>
+
+                        <div class="sponsor-popover" id="sponsorEmailPopover" role="dialog" aria-label="Sponsor email" hidden>
+                            <div class="sponsor-popover__row">
+                                <code class="sponsor_popover__email" id="sponsorEmailText">clemsonbajasae@gmail.com</code>
+                                <button class="btn btn--ghost sponsor-popover__copy" type="button" id="sponsorEmailCopyBtn">
+                                    Copy
+                                </button>
+                            </div>
+                            <div class="sponsor-popover__status" id="sponsorEmailStatus" aria-live="polite"></div>
+                        </div>
+
+
+                    </div>
                     <a class="btn btn--ghost" href="../assets/docs/SponsorshipPacket.pdf" aria-disabled="true">Sponsorship Packet</a>
                 </div>
             </div>
         </section>
 
-        <section class="container tier tier--diamond">
+        <!-- <section class="container tier tier--diamond">
             <header class="tier-head">
                 <span class="tier-badge">Diamond</span>
             </header>
@@ -70,14 +91,14 @@
             <div class="logo-grid">
                 
             </div>
-        </section>
+        </section> -->
 
         <section class="container tier tier--gold">
             <header class="tier-head">
                 <span class="tier-badge">Gold</span>
             </header>
             <div class="logo-grid">
-                
+                <img src="../assets/images/bCat.png">
             </div>
         </section>
 
