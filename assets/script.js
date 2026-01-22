@@ -269,7 +269,7 @@ function pickWeighted(rng, items) {
 
 
     for (let i = start; i < end; i++) {
-      const cls = pickWeighted(rng, weights); // <-- you were missing this
+      const cls = pickWeighted(rng, weights); 
 
       const btn = document.createElement('div');
       btn.className = `g6-item ${cls}`;
@@ -306,10 +306,8 @@ function pickWeighted(rng, items) {
 
     if (!tile) return;
 
-    // This is the only truth that matters
     lbIndex = Number(tile.dataset.i);
 
-    // Open the exact image you clicked
     lb.classList.add('open');
     lb.setAttribute('aria-hidden', 'false');
     document.body.classList.add('blurred');
@@ -380,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('.main-nav a');
   if (!links.length) return;
 
-  const path = window.location.pathname.replace(/\/+$/, ''); // trim trailing /
+  const path = window.location.pathname.replace(/\/+$/, ''); 
   links.forEach(a => {
     a.removeAttribute('aria-current');
     const href = new URL(a.getAttribute('href'), window.location.origin)
@@ -390,3 +388,77 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Sponsor page animation
+
+document.addEventListener('DOMContentLoaded', () => {
+  const trigger = document.getElementById('sponsorEmailBtn');
+  const popover = document.getElementById('sponsorEmailPopover');
+  const copyBtn = document.getElementById('sponsorEmailCopyBtn');
+  const emailEl = document.getElementById('sponsorEmailText');
+  const statusEl = document.getElementById('sponsorEmailStatus');
+
+  if (!trigger || !popover || !copyBtn || !emailEl) return;
+
+  let closeTimer = null;
+
+  function setOpen(isOpen) {
+    trigger.setAttribute('aria-expanded',  String(isOpen));
+    popover.hidden = !isOpen;
+
+    if (!isOpen && statusEl) statusEl.textContent = '';
+  }
+
+  function toggle() {
+    setOpen(popover.hidden);
+  }
+
+  function clearStatusSoon() {
+    if (!statusEl) return;
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => { statusEl.textContent = '';},  1500); 
+  }
+
+  async function copyEmail() {
+    const email = emailEl.textContent.trim();
+
+    try {
+
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(email);
+      }
+      else {
+        const ta = document.createElement('textarea');
+        ta.value = email;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+
+      if (statusEl) statusEl.textContent = 'Copied to clipboard';
+      clearStatusSoon();
+    } catch (err) {
+      if (statusEl) statusEl.textContent = 'copy failed';
+    }
+
+  }
+
+  trigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggle();
+  });
+
+  copyBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    copyEmail();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (popover.hidden) return;
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+});
