@@ -462,3 +462,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+// Logic for mobile website support
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.main-nav');
+  if (!btn || !nav) return;
+
+  
+})
