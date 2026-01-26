@@ -1314,6 +1314,17 @@ body.blurred{ overflow: hidden;}
     background: color-mix(in srgb, var(--accent), var(--surface-2) 80%);
 }
 
+.nav-toggle {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--text);
+    cursor: pointer;
+    display: none;
+    font-size: 1.4rem;
+    padding: 10px 12px;
+}
+
 .page-header {
     align-items: center;
     animation: headerFadeIn 0.8s ease forwards;
@@ -1901,4 +1912,43 @@ body.blurred{ overflow: hidden;}
 
 html, body {
     overflow-x: hidden;
+}
+
+/* Mobile support */
+@media (max-width: 860px) {
+    .header-row {
+        justify-content: space-between;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-nav {
+        display: none;
+        width: 100%;
+    }
+
+    .main-nav.open {
+        display: block;
+        margin-top: 12px;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-list a {
+        border-right: 1px solid var(--line);
+        min-width: 0;
+        width: 100%;
+    }
+
+    .nav-list li:first-child a,
+    .nav-list li:last-child a {
+        border-radius: 12px;
+    }
 }
