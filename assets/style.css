@@ -2020,6 +2020,26 @@ html, body {
 
 
 @media (max-width: 600px) {
+    .about-sections {
+        gap: 20px;
+        padding-top: 12px;
+        padding-bottom: 28px;
+    }
+
+    .about-card {
+        padding: 18px 18px;
+        border-radius: 14px;
+    }
+
+    .about-card h2 {
+        font-size: 1.45rem;
+    }
+
+    .about-card p {
+        font-size: 0.98rem;
+        line-height: 1.65;
+    }
+
     .brand img {
         height: 38px;
     }
@@ -2035,6 +2055,16 @@ html, body {
         padding: 8px 10px;
         
     }
+
+    .page-hero--striped {
+        padding: 0.9rem 0;
+    }
+
+    .page-hero--striped .page-hero__title {
+        font-size: clamp(2.1rem, 10vw, 3rem);
+        line-height: 1;
+    }
+
 
     .site-header {
         padding: 8px 12px;
