@@ -266,6 +266,8 @@ body {
     background-size: cover;
     color: var(--text);
     font: 16px/1.6 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 }
 
 .brand {
@@ -329,6 +331,10 @@ body {
 .btn:hover { 
     background: color-mix(in srgb, var(--accent), white 10%); 
     transform: translateY(-1px);     
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
 }
 
 .cd-block {
@@ -1598,6 +1604,11 @@ body.blurred{ overflow: hidden;}
     padding-inline: 16px;
 }
 
+.site-header, .site-footer {
+    padding-left: env(safe-area-inset-left)
+    padding-right: env(safe-area-inset-right)
+}
+
 .slideshow {
     position: absolute;
     inset: 0;
@@ -1933,7 +1944,7 @@ html, body {
 
     .main-nav.open {
         display: block;
-        margin-top: 12px;
+        margin-top: 10px;
     }
 
     .nav-list {
@@ -1944,6 +1955,7 @@ html, body {
     .nav-list a {
         border-right: 1px solid var(--line);
         min-width: 0;
+        padding: 0.85rem 1rem;
         width: 100%;
     }
 
@@ -1951,4 +1963,87 @@ html, body {
     .nav-list li:last-child a {
         border-radius: 12px;
     }
+}
+
+/* more mobile support */
+@media (max-width: 700px) {
+    .g6-nav {
+        height: 48px;
+        width: 48px;
+    }
+
+    .hero {
+        min-height: 70svh;
+        padding: 24px 0 40px;
+    }
+
+    .hero-tile {
+        background: rgba(0,0,0,0.45);
+        border-radius: 14px;
+        left: 0;
+        margin-left: 0;
+        min-height: 0;
+        max-width: none;
+        padding: 18px 18px;
+        position: relative;
+        top: 0;
+        width: 100%;
+    }
+
+    .hero-tile h1 {
+        line-height: 1.05;
+        font-size: clamp(2rem, 7vw, 2.6rem);
+    }
+
+    .hero-tile .load {
+        font-size: 1rem;
+        margin-top: 6px;
+    }
+
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+        height: 52px;
+        width: 52px;
+    }
+
+    .slideshow .prev, 
+    .slideshow .next {
+        font-size: 1.6rem;
+        padding: 0.35rem 0.55rem;
+    }
+
+    .slideshow .dots {
+        bottom: 12px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .brand img {
+        height: 38px;
+    }
+
+    .brand span {
+        font-size: 1.05rem;
+        letter-spacing: 0.3px;
+    }
+
+    .nav-toggle {
+        border-radius: 10px;
+        font-size: 1.25rem;
+        padding: 8px 10px;
+        
+    }
+
+    .site-header {
+        padding: 8px 12px;
+    }
+
+    .site-header .container {
+        padding-inline: 8px;
+    }
+
+    .brand img { height: 44px;}
+    .brand span { font-size: 1.15rem; }
 }
