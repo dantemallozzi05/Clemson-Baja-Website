@@ -1928,7 +1928,8 @@ html, body {
 /* Mobile support */
 @media (max-width: 860px) {
     .header-row {
-        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
     }
 
     .nav-toggle {
@@ -1939,24 +1940,38 @@ html, body {
 
     .main-nav {
         display: none;
+        flex: 0 0 100%;
+        justify-content: center;
+        margin-left: 0;
         width: 100%;
     }
 
     .main-nav.open {
         display: block;
         margin-top: 10px;
+        margin-inline: auto;
+        max-width: 420px;
+        width: 100%;
     }
 
     .nav-list {
         flex-direction: column;
+        margin: 0 auto;
+        max-width: 420px;
         width: 100%;
     }
 
     .nav-list a {
         border-right: 1px solid var(--line);
+        font-size: 1.05rem;
         min-width: 0;
-        padding: 0.85rem 1rem;
+        padding: 0.7rem 0.9rem;
+        text-align: center;
         width: 100%;
+    }
+
+    .nav-list a::before {
+        inset: -6px -10px;
     }
 
     .nav-list li:first-child a,
@@ -2017,7 +2032,6 @@ html, body {
         bottom: 12px;
     }
 }
-
 
 @media (max-width: 600px) {
     .about-sections {
