@@ -1927,15 +1927,49 @@ html, body {
 
 /* Mobile support */
 @media (max-width: 860px) {
+    .brand {
+        justify-content: center;
+    }
+
     .header-row {
         align-items: center;
+        display: grid;
         flex-wrap: wrap;
+        grid-template-columns: 1fr auto;
+    }
+
+    .nav-list {
+        align-items: center;
+        gap: 10px;
+    }
+
+    .nav-list a {
+        border-radius: 14px;
+        border-right: 1px solid var(--line);
+        font-size: 1.00rem;
+        justify-content: center;
+        min-width: 0;
+        padding: 0.65rem 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-list li {
+        flex: none;
+        width: 280px;
+        max-width: 90vw;
+    }
+
+    .nav-list li:first-child a,
+    .nav-list li:last-child a {
+        border-radius: 14px;
     }
 
     .nav-toggle {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        justify-self: end;
     }
 
     .main-nav {
