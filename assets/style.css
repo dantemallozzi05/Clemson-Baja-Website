@@ -580,6 +580,43 @@ button, a {
 
 }
 
+.crowdfund-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+    
+}
+
+.crowdfund-card {
+    background: color-mix(in srgb, var(--surface), black 6%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+    padding: 20px 20px 24px;
+    flex: 1 1 42%;
+    max-width: 520px;
+    min-width: 300px;
+    position: relative;
+}
+
+.crowdfund-card h2 {
+    font-size: clamp(1.6rem, 2.2vw + 1rem, 2.4rem);
+    line-height: 1.15;
+    margin: 0 0 .35rem;
+}
+
+.crowdfund-card h2::after {
+    background: var(--accent);
+    border-radius: 2px;
+    content: "";
+    display: block;
+    height: 3px;
+    margin-top: 6px;
+    opacity: .9;
+    width: 64px;
+}
+
 .donate-actions {
     display: flex;
     flex-wrap: wrap;
@@ -721,14 +758,21 @@ button, a {
     display: grid;
     gap: 12px;
     grid-template-columns: 48px 1fr 48px;
+    margin: 18px auto 0;
     margin-top: 18px;
+    padding: 0 12px;
     position: relative;
+    width: min(100%, 1100px);
+
 }
 
 .g6-grid {
-    isolation: ;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    justify-items: center;
     position: relative;
-    display: block;
+
 }
 
 .g6-item {
@@ -1605,8 +1649,8 @@ body.blurred{ overflow: hidden;}
 }
 
 .site-header, .site-footer {
-    padding-left: env(safe-area-inset-left)
-    padding-right: env(safe-area-inset-right)
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 }
 
 .slideshow {
@@ -1713,6 +1757,15 @@ body.blurred{ overflow: hidden;}
 .social-links a:hover img {
     transform: scale(1.2);
     filter: brightness(1.2) saturate(1.5);
+}
+
+.tail-cta {
+    align-items: flex-end;
+    bottom: 0;
+    display: flex;
+    pointer-events: auto;
+    position: absolute;
+    z-index: 10;
 }
 
 .team-hero {
@@ -1876,15 +1929,14 @@ body.blurred{ overflow: hidden;}
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 32px;
-        flex-direction: column;
+        gap: 48px;
+        flex-direction: row;
         flex-wrap: nowrap;
-        padding: 24px 20px 40px;
     }
 
     .about-text {
-        flex: 0 0 42%;
-        max-width: none;
+        flex: 1 1 auto;
+        max-width: 720px;
     }
 
     .about-video {
@@ -2025,9 +2077,17 @@ html, body {
 
 /* more mobile support */
 @media (max-width: 700px) {
+    .g6-item {
+        aspect-ratio: 4/3;
+    }
+
     .g6-nav {
         height: 48px;
         width: 48px;
+    }
+
+    .gallery-6 {
+        padding: 0 12px;
     }
 
     .hero {
@@ -2121,7 +2181,6 @@ html, body {
         font-size: clamp(2.1rem, 10vw, 3rem);
         line-height: 1;
     }
-
 
     .site-header {
         padding: 8px 12px;
