@@ -41,6 +41,7 @@ section { padding: 64px 0; }
     position: relative;
     padding: 0;
     border-top: 1px solid var(--line);
+    z-index: 5;
 }
 
 .about.is-visible .about-tile {
@@ -592,6 +593,7 @@ button, a {
     background: color-mix(in srgb, var(--surface), black 6%);
     border: 1px solid var(--line);
     border-radius: 16px;
+    border-color: var(--accent2);
     box-shadow: 0 10px 24px rgba(0,0,0,0.35);
     padding: 20px 20px 24px;
     flex: 1 1 42%;
@@ -852,6 +854,7 @@ header {
 .hero {
     position: relative;
     min-height: 91vh;
+    overflow: visible;
     padding: 48px 0 64px;
     isolation: isolate;
 }
@@ -1768,6 +1771,22 @@ body.blurred{ overflow: hidden;}
     z-index: 10;
 }
 
+.tail-fab {
+    bottom: -68px;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    right: 22px;
+    width: 140px;
+    z-index: 2;
+}
+
+.tail-fab__img {
+    display: block;
+    filter: drop-shadow(0 10px 18px rgba(0,0,0,0.45));
+    width: 100%;
+}
+
 .team-hero {
     border-bottom: 3px solid color-mix(in srgb, var(--accent), white 10%);
     box-shadow: inset;
@@ -1949,6 +1968,12 @@ body.blurred{ overflow: hidden;}
         width: 100%;
         max-width: 1400px;
         transform: none;
+    }
+
+    .crowdfund-card {
+        align-items: flex-start;
+        flex: 0 0 420px;
+        margin-left: auto;
     }
 }
 
