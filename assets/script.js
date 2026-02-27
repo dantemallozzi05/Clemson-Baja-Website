@@ -475,3 +475,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
 });
+
+// Tail Physics / config
+
+document.addEventListener("DOMContentLoaded", () => {
+  const tail = document.querySelector(".tail-fab");
+  const target = document.querySelector("#crowdfunding");
+
+  if (!tail || !target) return;
+
+  tail.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    target.classList.remove("is-highlighted");
+
+    void target.offsetWidth; 
+    target.classList.add("is-highlighted");
+
+    window.setTimeout(() => {
+      target.classList.remove("is-highlighted");
+    }, 1300);
+
+    });
+  });
