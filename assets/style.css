@@ -1694,7 +1694,7 @@ body.blurred{ overflow: hidden;}
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
+    background: transparent;
     color: white;
     border: none;
     font-size: 2rem;
@@ -1707,7 +1707,8 @@ body.blurred{ overflow: hidden;}
 
 .slideshow .prev:hover,
 .slideshow .next:hover {
-    background: rgba(0, 0, 0, 0.7);
+    color: var(--accent);
+    transition: color 0.3s ease;
 }
 
 .slideshow .prev { left: 20px; }
