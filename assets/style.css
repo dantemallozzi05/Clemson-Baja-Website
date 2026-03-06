@@ -571,6 +571,8 @@ button, a {
     text-transform: uppercase;
 }
 
+.container--wide { max-width: 1400px; }
+
 .countdown-row {
     align-items: flex-end;
     display: flex;
@@ -879,22 +881,28 @@ header {
     pointer-events: none;
 }
 
+.hero-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0 0 1.2rem;
+    
+}
+
 .hero-tile {
-    background: rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
+    background: transparent;
     border: none;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     color: var(--text);
-    padding: 24px 36px;
+    padding: 0;
     position: absolute;
     margin: 0;
-    max-width: 600px;
-    top: 12%;
-    left: 5%;
+    max-width: 680px;
+    top: 10%;
+    left: 0;
     margin-left: clamp(32px, 8vw, 96px);
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
     margin-right: auto;
-    min-height: 280px;
+    min-height: 0;
 }
 
 .hero-tile h1 {
