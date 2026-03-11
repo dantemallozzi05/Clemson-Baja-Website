@@ -160,7 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
   imagesLoaded(grid)
-    .on('progress', () => {
+    .on('progress', (_, imgLoad) => {
+      const tile = imgLoad.img.closest('.g6-item');
+      if (tile) tile.classList.add('loaded');
       if (msnry) msnry.layout();
     })
     .on('always', () => {
@@ -212,6 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const PAGE_SIZE = 9;
   let page = 0;
 
+  const dotsRow = document.createElement('div');
+  dotsRow.className = 'g6-dots';
+  grid.closest('.gallery-6')?.insertAdjacentElement('afterend', dotsRow);
+
   const prevBtn = document.querySelector('.g6-nav.prev');
   const nextBtn = document.querySelector('.g6-nav.next');
 
@@ -223,6 +229,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const lbNext  = lb?.querySelector('.lightbox-next');
 
   let lbIndex = 0;
+  
+  const counter = document.createElement('div');
+  counter.className = 'lightbox-counter';
+  lb?.appendChild(counter);
 
   const pattern = ['is-big', 'is-tall', 'is-small', 'is-wide', 'is-small', 'is-tall'];
 
@@ -261,10 +271,11 @@ function pickWeighted(rng, items) {
 
     const rng = mulberry32(12345 + p * 999); // stable per page
     const weights = [
-      { v: 'is-big',  w: 1 },
-      { v: 'is-wide', w: 2 },
-      { v: 'is-tall', w: 2 },
-      { v: 'is-small',w: 5 }
+      { v: 'is-big',      w: 2 },
+      { v: 'is-portrait', w: 2 },
+      { v: 'is-wide',     w: 2 },
+      { v: 'is-tall',     w: 3 },
+      { v: 'is-small',    w: 3 }
     ];
 
 
@@ -294,29 +305,27 @@ function pickWeighted(rng, items) {
 
     initMasonry();
 
+
+    dotsRow.innerHTML = '';
+
+    const total = pages();
+    if (total > 1) {
+        for (let i = 0; i < total; i++) {
+            const d = document.createElement('button');
+            d.className = 'g6-dot' + (i === page ? ' active' : '');
+            d.setAttribute('aria-label', `Page ${i + 1}`);
+            d.addEventListener('click', () => { page = i; renderPage(page); });
+            dotsRow.appendChild(d);
+        }
+    }
+
   }
 
   grid.addEventListener('click', (e) => {
     const tile = e.target.closest('.g6-item');
-    console.log("CLICKED:", {
-    i: tile.dataset.i,
-    full: tile.dataset.full,
-    thumb: tile.querySelector("img")?.src
-  });
-
     if (!tile) return;
-
-    lbIndex = Number(tile.dataset.i);
-
-    lb.classList.add('open');
-    lb.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('blurred');
-
-    lbImg.src = tile.dataset.full;
+    openLightbox(Number(tile.dataset.i));
   });
-
-
-
 
 
   function nextPage() { page = (page + 1) % pages(); renderPage(page); }
@@ -332,10 +341,8 @@ function pickWeighted(rng, items) {
     document.body.classList.add('blurred');
 
     lbImg.src = fullUrl(lbIndex);
+    counter.textContent = `${lbIndex + 1} / ${FILES.length}`;
   }
-
-
-
 
   function closeLightbox() {
     lb.classList.remove('open');
@@ -346,11 +353,13 @@ function pickWeighted(rng, items) {
   function lbNextImg() {
     lbIndex = (lbIndex + 1) % FILES.length;
     lbImg.src = fullUrl(lbIndex);
+    counter.textContent = `${lbIndex + 1} / ${FILES.length}`;
   }
 
   function lbPrevImg() {
     lbIndex = (lbIndex - 1 + FILES.length) % FILES.length;
     lbImg.src = fullUrl(lbIndex);
+    counter.textContent = `${lbIndex + 1} / ${FILES.length}`;
   }
 
   lbClose?.addEventListener('click', closeLightbox);
