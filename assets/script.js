@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const slides = document.querySelectorAll(".slideshow img");
     const prevBtn = document.querySelector(".slideshow .prev");
     const nextBtn = document.querySelector(".slideshow .next");
-    const dotsContainer = document.querySelector(".slideshow .dots");
+    const dotsContainer = document.querySelector(".hero-bg .dots");
     if (!slides.length || !dotsContainer) return;
 
     let current = 0;

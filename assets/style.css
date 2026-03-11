@@ -873,6 +873,16 @@ header {
     z-index: 0;
 }
 
+.hero-bg .dots {
+    bottom: 20px;
+    display: flex;
+    gap: 8px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
 .hero-bg::after {
     content: "";
     position: absolute;
@@ -882,27 +892,33 @@ header {
 }
 
 .hero-heading {
+    align-items: baseline;
     display: flex;
-    flex-direction: column;
-    gap: 0;
+    flex-direction: row;
+    gap: 0 clamp(12px, 2vw, 28px);
     margin: 0 0 1.2rem;
     
 }
 
 .hero-tile {
-    background: transparent;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.35) 60%,
+        transparent 100%
+    );
     border: none;
+    bottom: 0;
     box-shadow: none;
     color: var(--text);
-    padding: 0;
+    left: 0;
+    padding: clamp(28px, 5vw, 52px) clamp(24px, 6vw, 72px) clamp(52px, 7vw, 72px) clamp(24px, 6vw, 72px);
+    padding-bottom: 48px;
     position: absolute;
     margin: 0;
-    max-width: 680px;
-    top: 10%;
-    left: 0;
-    margin-left: clamp(32px, 8vw, 96px);
-    margin-right: auto;
     min-height: 0;
+    right: 0;
+    width: 100%;
 }
 
 .hero-tile h1 {
@@ -1740,17 +1756,17 @@ body.blurred{ overflow: hidden;}
 .slideshow .prev { left: 20px; }
 .slideshow .next { right: 20px; }
 
-.slideshow .dots {
+.hero-bg .dots {
     position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 8px;
-    z-index: 2;
+    z-index: 5;
 }
 
-.slideshow .dot {
+.hero-bg .dot {
     height: 12px; 
     width: 12px;
     background-color: rgba(255,255,255,0.5);
@@ -1760,8 +1776,9 @@ body.blurred{ overflow: hidden;}
     transition: background-color 0.3s ease;
 }
 
-.slideshow .dot.active {
+.hero-bg .dot.active {
     background-color: var(--accent, #F56600);
+    transform: scale(1.3);
 }
 
 .sponsors-intro { padding: 28px 20px 0; }
@@ -1909,7 +1926,10 @@ body.blurred{ overflow: hidden;}
 }
 
 .team-section--leadership .team-section__body .team-grid {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
 }
 
 .team-section__count {
@@ -2275,6 +2295,7 @@ html, body {
         position: relative;
         top: 0;
         width: 100%;
+        z-index: 2;
     }
 
     .hero-tile h1 {
@@ -2302,6 +2323,7 @@ html, body {
 
     .slideshow .dots {
         bottom: 12px;
+        z-index: 4;
     }
 }
 
