@@ -205,7 +205,22 @@ document.addEventListener('DOMContentLoaded', () => {
     'carolina-comp-29.webp',
     'carolina-comp-30.webp',
     'carolina-comp-31.webp',
-    'carolina-comp-32.webp'
+    'carolina-comp-32.webp',
+    'snow1.jpg',
+    'snow2.JPG',
+    'snow3.JPG',
+    'snow4.JPG',
+    'snow5.JPG',
+    'snow6.jpg',
+    'snow7.JPG',
+    'snow8.JPG',
+    'snow9.JPG',
+    'snow10.JPG',
+    'snow11.JPG',
+    'snow12.JPG',
+    'snow13.JPG',
+    'snow14.JPG',
+    'snow15.JPG'
   ];
 
   const THUMB_BASE = '../assets/gallery/thumbs/';
@@ -314,7 +329,12 @@ function pickWeighted(rng, items) {
             const d = document.createElement('button');
             d.className = 'g6-dot' + (i === page ? ' active' : '');
             d.setAttribute('aria-label', `Page ${i + 1}`);
-            d.addEventListener('click', () => { page = i; renderPage(page); });
+            d.addEventListener('click', () => {
+              const y = window.scrollY;
+              page = i;
+              renderPage(page);
+              requestAnimationFrame(() => window.scrollTo({ top: y, behavior: 'instant' }), 50);
+            });
             dotsRow.appendChild(d);
         }
     }
@@ -330,8 +350,18 @@ function pickWeighted(rng, items) {
 
   function nextPage() { page = (page + 1) % pages(); renderPage(page); }
   function prevPage() { page = (page - 1 + pages()) % pages(); renderPage(page); }
-  prevBtn?.addEventListener('click', prevPage);
-  nextBtn?.addEventListener('click', nextPage);
+  prevBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const y = window.scrollY;
+    prevPage();
+    requestAnimationFrame(() => window.scrollTo({ top: y, behavior: 'instant' }), 50);
+  });
+  nextBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const y = window.scrollY;
+    nextPage();
+    requestAnimationFrame(() => window.scrollTo({ top: y, behavior: 'instant' }), 50);
+  });
 
   function openLightbox(i) {
     lbIndex = i;

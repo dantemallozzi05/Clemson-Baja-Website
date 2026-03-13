@@ -1275,7 +1275,7 @@ header {
     height: 80px;
     object-fit: contain;
     object-position: center;
-    width: 160px;
+    width: auto;
 }
 
 .logo-grid::before {
@@ -1893,8 +1893,27 @@ body.blurred{ overflow: hidden;}
 }
 
 .sponsors-intro { padding: 28px 20px 0; }
-.sponsors-card { display: grid; gap: 12px; }
-.sponsors-cta { display: flex; gap: 12px; margin-top: 8px; }
+
+.sponsors-intro-text {
+    flex: 1;
+    min-width: 200px;
+}
+
+.sponsors-card {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+.sponsors-cta {
+    align-items: center;
+    display: flex; 
+    gap: 12px; 
+    margin-top: 8px; 
+}
 
 .sponsor-popover {
     backdrop-filter: blur(6px);
@@ -1916,36 +1935,55 @@ body.blurred{ overflow: hidden;}
 }
 
 .sponsors-tier-row {
-    align-items: center;
     display: flex;
-    gap: 32px;
-    padding: 16px 0;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 0;
 }
 
 .sponsors-tier-row .logo-grid {
-    background: none;
-    box-shadow: none;
-    border-radius: 0;
-    flex: 1;
-    justify-content: flex-start;
-    padding: 0;
-    
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 40px;
+    grid-template-columns: unset !important;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0 !important;
 }
 
-.sponsors-tier-row .tier-badge {
-    --badge-bg: var(--accent);
-    background: linear-gradient(120deg, var(--badge-bg), color-mix(in srgb, var(--badge-bg), white 20%)); 
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    color: inherit;
-    font-size: 0.75rem;
-
-    text-align: center;
-    text-transform: uppercase;
-    white-space: nowrap;
-    
+.sponsors-tier-row .logo-grid::before {
+    display: none !important;
 }
 
+.sponsors-tier-row .logo-grid img {
+    height: 60px !important;
+    width: auto !important;
+    max-width: 180px;
+    object-fit: contain;
+}
+
+.sponsors-tier-row:has(.tier-badge--platinum) .logo-grid img {
+    height: 100px !important;
+    max-width: 300px;
+}
+
+.sponsors-tier-row:has(.tier-badge--gold) .logo-grid img {
+    height: 80px !important;
+    max-width: 220px;
+}
+
+.sponsors-tier-row:has(.tier-badge--silver) .logo-grid img {
+    height: 60px !important;
+    max-width: 180px;
+}
+
+.sponsors-tier-row:has(.tier-badge--bronze) .logo-grid img {
+    height: 50px !important;
+    max-width: 160px;
+}
 .sponsor-popover-wrap {
     display: inline-block;
     position: relative;
@@ -2151,10 +2189,20 @@ body.blurred{ overflow: hidden;}
     width: 6px;
 }
 
+.tier-badge {
+    --badge-bg: var(--accent);
+    background: linear-gradient(120deg, var(--badge-bg), color-mix(in srgb, var(--badge-bg), white 20%));
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+    color: #111;
+    font-weight: 700;
+    padding: 6px 12px;
+    text-transform: uppercase;
+}
+
 .tier-divider {
     border: none;
     border-top: 1px solid #e0e0e0;
-    margin: 0;
+    margin: -1px 0;
 }
 
 .tier-head {
@@ -2162,6 +2210,20 @@ body.blurred{ overflow: hidden;}
     display: flex;
     gap: 12px;
     margin-bottom: 14px;
+}
+
+.tier-label-row {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+}
+
+.tier-label-row::after {
+    background: #e0e0e0;
+    content: "";
+    flex: 1;
+    height: 1px;
+
 }
 
 .tier .tier-head {
@@ -2179,15 +2241,6 @@ body.blurred{ overflow: hidden;}
     position: absolute;
 }
 
-.tier-badge {
-    --badge-bg: var(--accent);
-    background: linear-gradient(120deg, var(--badge-bg), color-mix(in srgb, var(--badge-bg), white 20%));
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
-    color: #111;
-    font-weight: 700;
-    padding: 6px 12px;
-    text-transform: uppercase;
-}
 
 .sponsors-tier-row .tier-badge--platinum { background: #e8e0f0; color: #111; }
 .sponsors-tier-row .tier-badge--gold     { background: #f2b705; color: #111; }
@@ -2301,16 +2354,12 @@ body.blurred{ overflow: hidden;}
 ``` :contentReference[oaicite:1]{index=1}
 }
 
-@media (max-width: 1024px) { .logo-grid { padding: 14px; } }
-
 @media (min-width: 980px){
   .join-meetings{
     align-items: start;
     grid-template-columns: 1fr 1.2fr;
   }
 }
-
-@media (max-width: 640px) { .logo-grid { padding: 12px; } }
 
 @media (max-width: 760px) {
     .subteam-grid { grid-template-columns: 1fr; }

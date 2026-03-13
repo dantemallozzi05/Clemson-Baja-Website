@@ -46,10 +46,12 @@
     <main id="main" class="container" style="padding: 32px 20px;">
         <section class="container sponsors-intro">
             <div class="about-card sponsors-card">
-                <h2 class="page-title" style="margin:0 0 .6rem">Supporting Clemson Baja SAE</h2>
-                <p class="lead" style="margin:.25rem 0 0;color: var(--muted)">
-                    Thanks to our generous sponsors, our team is able to design, build, and race effectively. Thank you!
-                </p>
+                <div class="sponsors-intro-text">
+                    <h2 class="page-title" style="margin:0 0 .4rem">Thank You to Our Sponsors</h2>
+                    <p style="margin:.25rem 0 0; color: var(--muted); font-size: .95rem; line-height: 1.6;">
+                        Our sponsors make it possible for Clemson Baja SAE to design, build, and race competitively. We're grateful for their continued support.
+                    </p>
+                </div>
                 <div class="sponsor-cta">
                     <div class="sponsor-popover-wrap">
                         <button
@@ -59,20 +61,18 @@
                             aria-haspopup="dialog"
                             aria-expanded="false"
                             aria-controls="sponsorEmailPopover"
-                        > Become a Sponsor!</button>
-
+                        >Become a Sponsor</button>
                         <div class="sponsor-popover" id="sponsorEmailPopover" role="dialog" aria-label="Sponsor email" hidden>
                             <div class="sponsor-popover__row">
                                 <code class="sponsor_popover__email" id="sponsorEmailText">clemsonbajasae@gmail.com</code>
-                                <button class="btn btn--ghost sponsor-popover__copy" type="button" id="sponsorEmailCopyBtn">
-                                    Copy
-                                </button>
+                                <button class="btn btn--ghost sponsor-popover__copy" type="button" id="sponsorEmailCopyBtn">Copy</button>
                             </div>
                             <div class="sponsor-popover__status" id="sponsorEmailStatus" aria-live="polite"></div>
                         </div>
                     </div>
-                    
-                    <a class="btn btn--ghost" href="../assets/docs/SponsorshipPacket.pdf" aria-disabled="true">Sponsorship Packet</a>
+                    <a class="btn btn--ghost" href="../assets/docs/SponsorshipPacket.pdf" target="_blank" rel="noopener">
+                        Sponsorship Packet ↗
+                    </a>
                 </div>
             </div>
         </section>
@@ -95,47 +95,54 @@
             </div>
         </section> -->
 
-<div class="container sponsors-tile">
+        <div class="container sponsors-tile">
 
-    <div class="sponsors-tier-row">
-        <span class="tier-badge tier-badge--platinum">Platinum</span>
-        <div class="logo-grid">
-            <img src="../assets/images/bCat.png">
+            <div class="sponsors-tier-row">
+                <div class="tier-label-row">
+                    <span class="tier-badge tier-badge--platinum">Platinum</span>
+                </div>
+                <div class="logo-grid">
+                    <img src="../assets/images/bCat.png" alt="Blanchard CAT">
+                </div>
+            </div>
+
+            <hr class="tier-divider">
+
+            <div class="sponsors-tier-row">
+                <div class="tier-label-row">
+                    <span class="tier-badge tier-badge--gold">Gold</span>
+                </div>
+                <div class="logo-grid">
+                    <img src="../assets/images/magnolia.png" alt="Magnolia">
+                </div>
+            </div>
+
+            <hr class="tier-divider">
+
+            <div class="sponsors-tier-row">
+                <div class="tier-label-row">
+                    <span class="tier-badge tier-badge--silver">Silver</span>
+                </div>
+                <div class="logo-grid">
+                    <img src="../assets/images/ansys.png" alt="Ansys">
+                    <img src="../assets/images/skyrun.png" alt="SkyRun">
+                    <img src="../assets/images/sharp.png" alt="Sharp">
+                </div>
+            </div>
+
+            <hr class="tier-divider">
+
+            <div class="sponsors-tier-row">
+                <div class="tier-label-row">
+                    <span class="tier-badge tier-badge--bronze">Bronze</span>
+                </div>
+                <div class="logo-grid">
+                    <img src="../assets/images/easternPowerTech.png" alt="Eastern Power Tech">
+                    <img src="../assets/images/monster.png" alt="Monster Energy">
+                </div>
+            </div>
+
         </div>
-    </div>
-
-    <hr class="tier-divider">
-
-    <div class="sponsors-tier-row">
-        <span class="tier-badge tier-badge--gold">Gold</span>
-        <div class="logo-grid">
-            <img src="../assets/images/magnolia.png">
-        </div>
-    </div>
-
-    <hr class="tier-divider">
-
-    <div class="sponsors-tier-row">
-        <span class="tier-badge tier-badge--silver">Silver</span>
-        <div class="logo-grid">
-            <img src="../assets/images/ansys.png">
-            <img src="../assets/images/bricksMinifigs.png">
-            <img src="../assets/images/skyrun.png">
-            <img src="../assets/images/sharp.png">
-        </div>
-    </div>
-
-    <hr class="tier-divider">
-
-    <div class="sponsors-tier-row">
-        <span class="tier-badge tier-badge--bronze">Bronze</span>
-        <div class="logo-grid">
-            <img src="../assets/images/easternPowerTech.png">
-            <img src="../assets/images/monster.png">
-        </div>
-    </div>
-
-</div>
     </main>
 
     <footer class="site-footer">
