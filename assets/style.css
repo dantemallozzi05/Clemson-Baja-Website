@@ -1911,7 +1911,8 @@ body.blurred{ overflow: hidden;}
 .sponsors-cta {
     align-items: center;
     display: flex; 
-    gap: 12px; 
+    flex-shrink: 0;
+    gap: 10px; 
     margin-top: 8px; 
 }
 
@@ -2584,6 +2585,36 @@ html, body {
 
     .site-header .container {
         padding-inline: 8px;
+    }
+
+    .sponsors-card {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .sponsors-cta {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .sponsors-cta .btn,
+    .sponsors-cta .sponsor-popover-trigger {
+        justify-content: center;
+        text-align: center;
+        width: calc(100vw - 48px);
+    }
+
+    .sponsors-intro {
+        padding: 16px 0 0;
+    }
+
+    .sponsors-tile {
+        border-radius: 12px;
+        margin-top: 16px;
+        padding: 20px 16px;
+
     }
 
     .brand img { height: 44px;}
