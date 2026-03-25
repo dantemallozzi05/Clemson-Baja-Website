@@ -139,38 +139,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let msnry = null;
 
-  function initMasonry() {
-  if (!window.Masonry || !window.imagesLoaded) return;
+function initMasonry() {
+  // If libraries aren't ready yet, retry in 100ms instead of silently quitting
+  if (!window.Masonry || !window.imagesLoaded) {
+    setTimeout(initMasonry, 100);
+    return;
+  }
 
   if (msnry) {
     msnry.destroy();
     msnry = null;
   }
 
-  
-  msnry = new Masonry(grid, {
-    gutter: 14,
-    itemSelector: '.g6-item',
-    columnWidth: '.g6-sizer',
-    percentPosition: true
-  });
-
-  msnry.reloadItems();
-  msnry.layout();
-
-  
-  imagesLoaded(grid)
-    .on('progress', (_, imgLoad) => {
-      const tile = imgLoad.img.closest('.g6-item');
-      if (tile) tile.classList.add('loaded');
-      if (msnry) msnry.layout();
-    })
-    .on('always', () => {
-      if (msnry) msnry.layout();
+  // Wait for ALL images to have dimensions before initializing
+  imagesLoaded(grid, function() {
+    msnry = new Masonry(grid, {
+      gutter: 14,
+      itemSelector: '.g6-item',
+      columnWidth: '.g6-sizer',
+      percentPosition: true
     });
+
+    msnry.reloadItems();
+    msnry.layout();
+
+    // Mark tiles as loaded for the shimmer fade-out
+    grid.querySelectorAll('.g6-item').forEach(tile => {
+      tile.classList.add('loaded');
+    });
+  });
 }
-
-
 
   // List filenames 
   const FILES = [
