@@ -140,7 +140,25 @@ document.addEventListener('DOMContentLoaded', () => {
   let msnry = null;
 
 function initMasonry() {
-  // If libraries aren't ready yet, retry in 100ms instead of silently quitting
+  if (window.innerWidth <= 700) {
+    if (msnry) {
+      msnry.destroy();
+      msnry = null;
+    }
+
+    grid.removeAttribute('style');
+
+    grid.querySelectorAll('.g6-item, .g6-sizer').forEach(el => {
+      el.removeAttribute('style');
+    });
+
+    grid.querySelectorAll('.g6-item').forEach(tile => {
+      tile.classList.add('loaded');
+    });
+
+    return;
+  }
+
   if (!window.Masonry || !window.imagesLoaded) {
     setTimeout(initMasonry, 100);
     return;
@@ -151,7 +169,6 @@ function initMasonry() {
     msnry = null;
   }
 
-  // Wait for ALL images to have dimensions before initializing
   imagesLoaded(grid, function() {
     msnry = new Masonry(grid, {
       gutter: 14,
@@ -163,7 +180,6 @@ function initMasonry() {
     msnry.reloadItems();
     msnry.layout();
 
-    // Mark tiles as loaded for the shimmer fade-out
     grid.querySelectorAll('.g6-item').forEach(tile => {
       tile.classList.add('loaded');
     });
@@ -227,9 +243,7 @@ function initMasonry() {
   const PAGE_SIZE = 9;
   let page = 0;
 
-  const dotsRow = document.createElement('div');
-  dotsRow.className = 'g6-dots';
-  grid.closest('.gallery-6')?.insertAdjacentElement('afterend', dotsRow);
+  const dotsRow = document.querySelector('.g6-dots');
 
   const prevBtn = document.querySelector('.g6-nav.prev');
   const nextBtn = document.querySelector('.g6-nav.next');
@@ -243,9 +257,7 @@ function initMasonry() {
 
   let lbIndex = 0;
   
-  const counter = document.createElement('div');
-  counter.className = 'lightbox-counter';
-  lb?.appendChild(counter);
+  const counter = lb?.querySelector('.lightbox-counter');
 
   const pattern = ['is-big', 'is-tall', 'is-small', 'is-wide', 'is-small', 'is-tall'];
 
@@ -313,8 +325,6 @@ function pickWeighted(rng, items) {
 
       grid.appendChild(btn);
     }
-
-
 
     initMasonry();
 
@@ -407,6 +417,11 @@ function pickWeighted(rng, items) {
     grid.innerHTML = '<p style="opacity:.7">Add filenames to FILES[] in script.js.</p>';
     return;
   }
+
+  window.addEventListener('resize', () => {
+      initMasonry();
+  });
+
 
   renderPage(page);
 });

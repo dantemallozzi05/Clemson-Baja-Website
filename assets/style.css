@@ -775,6 +775,10 @@ button, a {
 
 }
 
+.g6-controls {
+    display: contents;
+}
+
 .g6-dot {
     background: rgba(255,255,255,.25);
     border: none;
@@ -1207,13 +1211,20 @@ header {
     border-radius: 20px;
     bottom: 20px;
     color: #fff;
+    display: inline-flex;
     font-size: .8rem;
+    justify-content: center;
     left: 50%;
     letter-spacing: .06em;
+    margin: 0;
     padding: 4px 14px;
     pointer-events: none;
     position: absolute;
     transform: translateX(-50%);
+}
+
+.lightbox-controls {
+    display: contents;
 }
 
 .lightbox.open { opacity: 1; pointer-events: auto;}
@@ -2655,74 +2666,111 @@ html, body {
 
 /* more mobile support */
 @media (max-width: 700px) {
+    .gallery-6 {
+        column-gap: 12px;
+        display: grid !important;
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+        margin: 12px auto 0;
+        margin-bottom: 8px;
+        row-gap: 12px;
+        padding: 0 8px;
+        width: 100%;
+    }
+    
+    .g6-controls {
+        align-items: center;
+        display: flex !important;
+        gap: 16px;
+        justify-content: center;
+        margin-top: 12px;
+        width: 100%;
+    }
+
     .g6-dots {
-        margin-top: 14px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 12px auto 0 !important;
+        margin-top: 8px !important;
+        padding: 8px 16px;
+        width: fit-content;
     }
 
     .g6-grid {
         display: grid !important;
+        grid-column: 1 / -1;
         grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 6px;
-        max-width: none;
+        gap: 6px !important;
         order: 1;
-        width: 100%;
-    }
-
-    .g6-item {
-        aspect-ratio: 4/3;
-    }
-
-    .g6-item img {
-        display: block;
-        height: 100%;
-        object-fit: cover;
-        width: 100%;
-    }
-
-    .g6-item,
-    .g6-sizer {
-        aspect-ratio: 1 / 1;
-        border-radius: 8px;
-        margin: 0 !important;
-        overflow: hidden;
         width: 100% !important;
-        
+        max-width: none !important;
     }
 
     .g6-item,
+    .g6-sizer,
     .g6-item.is-big,
     .g6-item.is-tall,
     .g6-item.is-wide,
     .g6-item.is-small,
     .g6-item.is-portrait {
-        aspect-ratio: 1/1;
+        aspect-ratio: 1 / 1 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .g6-item img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .g6-nav {
-        display: none;
+        align-items: center;
+        background: color-mix(in srgb, var(--surface), black 12%);
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--text);
+        cursor: pointer;
+        display: inline-flex !important;
+        font-size: 18px;
+        height: 42px;
+        justify-content: center;
+        margin: 0;
+        position: static;
+        transform: none;
+        vertical-align: middle;
+        width: 42px;
     }
 
-    .g6-nav,
-    .g6-dots {
-        display: none !important;
-    }
-    
     .g6-nav.prev {
-        order: 2;
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: end;
+        margin: 0 !important;
+        position: static !important;
+        transform: none !important;
     }
 
     .g6-nav.next {
-        order: 3;
+        grid-column: 3;
+        grid-row: 2;
+        justify-self: start;
+        margin: 0 !important;
+        position: static !important;
+        transform: none !important;
+    }   
+
+    .g6-nav,
+    .g6-dots {
+        display: flex !important;
     }
 
-    .gallery-6 {
-        display: block !important;
-        gap: 12px auto 0;
-        grid-template-columns: 1fr !important;
-        justify-items: center;
-        margin: 12px auto 0;
-        padding: 0 8px;
-        width: 100%; 
+    .g6-sizer {
+        display: none !important;
     }
 
     .hero {
@@ -2754,6 +2802,63 @@ html, body {
     .hero-tile .load {
         font-size: 1rem;
         margin-top: 6px;
+    }
+
+    .lightbox {
+        align-content: center;
+        justify-items: center;
+        padding: 20px 12px 28px;
+    }   
+
+    .lightbox img {
+        max-height: 72vh;
+        max-width: 96vw;
+    }       
+
+    .lightbox-counter {
+        align-items: center;
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, .15);
+        border-radius: 20px;
+        color: #fff;
+        display: inline-flex;
+        font-size: .85rem;
+        left: auto !important;
+        letter-spacing: .06em;
+        justify-content: center;
+        margin: 0;
+        min-width: 78px;
+        padding: 6px 14px;
+        pointer-events: none;
+        position: static !important;
+        text-align: center;
+        transform: none !important;
+    }
+
+    .lightbox-controls {
+        align-items: center;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 10px;
+        width: auto;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        flex: 0 0 44px;
+        height: 44px;
+        position: static;
+        transform: none !important;
+        margin: 0;
+        width: 44px;
+    }
+
+    .lightbox-close {
+        height: 44px;
+        right: 14px;
+        width: 44px;
+        top: 14px;
     }
 
     .lightbox-close,
