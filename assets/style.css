@@ -1556,6 +1556,151 @@ body.blurred{ overflow: hidden;}
     padding: 10px 12px;
 }
 
+.newsletter-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.newsletter-copy {
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0 0 16px;
+}
+
+.newsletter-dropdown {
+    width: 100%;
+}
+
+.newsletter-dropdown[open] .newsletter-summary::after {
+    transform: rotate(180deg);
+}
+
+.newsletter-grid {
+    align-items: stretch;
+    display: grid;
+    gap: 22px;
+}
+
+.newsletter-link {
+    background: rgba(0,0,0,.22);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--text);
+    display: block;
+    font-weight: 600;
+    padding: 12px 14px;
+    text-decoration: none;
+    transition: border-color .15s ease, transform .15s ease, background .15s ease;
+}
+
+.newsletter-link:hover {
+    background: color-mix(in srgb, var(--surface-2), var(--accent) 10%);
+    border-color: color-mix(in srgb, var(--accent), white 15%);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.newsletter-link--latest {
+    color: var(--accent);
+}
+
+.newsletter-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.newsletter-left,
+.newsletter-right {
+    background: color-mix(in srgb, var(--surface), black 8%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px 20px 18px;
+}
+
+.newsletter-open-btn {
+    min-height: 48px;
+    white-space: nowrap;
+}
+
+.newsletter-select {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: var(--text);
+    font: inherit;
+    min-height: 48px;
+    padding: 0 14px;
+    width: 100%;
+
+
+    min-height: 48px;
+    padding: 0 14px;
+}   
+
+.newsletter-select-wrap {
+    flex: 1 1 240px;
+}
+
+.newsletter-signup-btn {
+    align-items: center;
+    color: #111;
+    justify-content: center;
+    min-height: 48px;
+    padding-inline: 20px;
+}
+
+.newsletter-summary {
+    align-items: center;
+    background: color-mix(in srgb, var(--surface-2), black 6%);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    font-weight: 700;
+    justify-content: space-between;
+    list-style: none;
+    padding: 14px 16px;
+    transition: border-color .15s ease, transform .15s ease, background .15s ease;
+}
+
+.newsletter-summary:hover {
+    border-color: color-mix(in srgb, var(--accent), white 15%);
+    background: color-mix(in srgb, var(--surface-2), var(--accent) 8%);
+}
+
+.newsletter-summary::after {
+    content: "⌄";
+    font-size: 1rem;
+    opacity: .85;
+    transition: transform .2s ease;
+}
+
+.newsletter-summary::-webkit-details-marker {
+    display: none;
+}
+
+.newsletter-tile {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+    margin: 0 auto 24px;
+    max-width: 1100px;
+    padding: 26px 28px;
+    width: 100%;
+}
+
+.newsletter-title {
+    font-size: 1.25rem;
+    letter-spacing: .4px;
+    margin: 0 0 10px;
+    color: var(--text);
+}
+
 .page-header {
     align-items: center;
     animation: headerFadeIn 0.8s ease forwards;
@@ -1979,23 +2124,31 @@ body.blurred{ overflow: hidden;}
 }
 
 .sponsors-tier-row:has(.tier-badge--platinum) .logo-grid img {
-    height: 100px !important;
+    height: 140px !important;
     max-width: 360px;
 }
 
 .sponsors-tier-row:has(.tier-badge--gold) .logo-grid img {
-    height: 90px !important;
+    height: 120px !important;
     max-width: 280px;
 }
 
 .sponsors-tier-row:has(.tier-badge--silver) .logo-grid img {
-    height: 95px !important;
+    height: 100px !important;
     max-width: 250px;
+}
+.sponsors-tier-row:has(.tier-badge--silver) .logo-grid img[alt="SkyRun"] {
+    height: 120px !important; 
 }
 
 .sponsors-tier-row:has(.tier-badge--bronze) .logo-grid img {
-    height: 95px !important;
+    height: 90px !important;
     max-width: 280px;
+}
+
+.sponsors-tier-row:has(.tier-badge--bronze) .logo-grid img[alt="Monster Energy"],
+.sponsors-tier-row:has(.tier-badge--bronze) .logo-grid img[alt="Old South LLC"] {
+    height: 110px !important;
 }
 .sponsor-popover-wrap {
     display: inline-block;
@@ -2288,7 +2441,6 @@ body.blurred{ overflow: hidden;}
     }
 }
 
-
 /* Responsive (Team Page) */
 @media (min-width: 640px) {
     .member-card { grid-column: span 6; }
@@ -2304,6 +2456,10 @@ body.blurred{ overflow: hidden;}
     .join-left{
         align-content: center;
         justify-items: center;
+    }
+
+    .newsletter-grid {
+        grid-template-columns: 1.25fr 0.95fr;
     }
 }
 
@@ -2560,6 +2716,21 @@ html, body {
         font-size: 1.25rem;
         padding: 8px 10px;
         
+    }
+
+    .newsletter-left,
+    .newsletter-right {
+        padding: 16px;
+    }
+
+    .newsletter-tile {
+        margin-bottom: 18px;
+        padding: 18px 16px;
+    }
+
+    .newsletter-signup-btn {
+        color: #111;
+        width: 100%;
     }
 
     .page-hero--striped {

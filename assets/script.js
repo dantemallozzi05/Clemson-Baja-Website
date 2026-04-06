@@ -552,3 +552,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
   });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const select = document.getElementById('newsletterSelect');
+    const openBtn = document.getElementById('openNewsletterBtn');
+
+    if (!select || !openBtn) return;
+
+    openBtn.addEventListener('click', () => {
+        const url = select.value;
+        if (url) {
+            window.open(url, '_blank', 'noopener');
+        }
+    });
+});
