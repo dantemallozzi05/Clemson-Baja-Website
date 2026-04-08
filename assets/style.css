@@ -1,7 +1,6 @@
 /* Styling Font */
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Burned&display=swap');
 
-
 /* Base */
 :root {
     --bg: #522D80;
@@ -1388,39 +1387,50 @@ body.blurred{ overflow: hidden;}
     display: grid;
     grid-column: span 12;
     grid-template-columns: 128px 1fr;
+    height: 100%;
+    padding: 4px;
     transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 
 .member-linkedin {
     align-items: center;
-    background: rgba(10, 102, 194, 0.12);
-    border: 1px solid rgba(10, 102, 194, .3);
-    border-radius: 6px;
+    border-radius: 8px;
     color: #6aacf0;
-    display: inline-flex;
+    display: inline-block;
     font-size: .7rem;
     font-weight: 700;
     gap: 5px;
+    height: 28px;
+    justify-content: center;
     letter-spacing: .4px;
     margin-top: 6px;
-    padding: 4px 9px;
     text-decoration: none;
     text-transform: uppercase;
-    transition: background .2s ease, border-color .2s ease, color .2s ease;
-    width: fit-content;
+    transition: transform .2s ease;
+    width: 28px;
+}
+
+.member-linkedin img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .member-linkedin:hover {
     background: rgba(10,102,194,0.28);
     border-color: rgba(10, 102, 194, 0.65);
     color: #90c4ff;
+    filter: brightness(1.2) saturate(1.4);
+    transform: scale(1.15);
     text-decoration: none;
 }
 
 .member-info {
-    display: flex;
+    display: block;
     flex-direction: column;
     gap: 6px;
+    height: 100%;
+    justify-content: space-between;
     padding: 14px 18px;
 }
 
@@ -1440,6 +1450,10 @@ body.blurred{ overflow: hidden;}
     transform: translateY(-4px);
 }
 
+.member-name {
+    min-height: 48px;
+}
+
 .member-photo {
     aspect-ratio: 1/1;
     background: #111;
@@ -1448,6 +1462,12 @@ body.blurred{ overflow: hidden;}
     margin: 0;
     overflow: hidden;
     width: 128px;
+}
+
+.member-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 
@@ -1881,6 +1901,7 @@ body.blurred{ overflow: hidden;}
     font-size: .78rem;
     font-weight: 800;
     letter-spacing: .6px;
+    margin-bottom: 6px;
     padding: 6px 10px;
     text-transform: uppercase;
 }
@@ -2137,7 +2158,8 @@ body.blurred{ overflow: hidden;}
     height: 100px !important;
     max-width: 250px;
 }
-.sponsors-tier-row:has(.tier-badge--silver) .logo-grid img[alt="SkyRun"] {
+.sponsors-tier-row:has(.tier-badge--silver) .logo-grid img[alt="SkyRun"],
+.sponsors-tier-row:has(.tier-badge--silver) .logo-grid img[alt="Old South LLC"] {
     height: 120px !important; 
 }
 
@@ -2146,8 +2168,7 @@ body.blurred{ overflow: hidden;}
     max-width: 280px;
 }
 
-.sponsors-tier-row:has(.tier-badge--bronze) .logo-grid img[alt="Monster Energy"],
-.sponsors-tier-row:has(.tier-badge--bronze) .logo-grid img[alt="Old South LLC"] {
+.sponsors-tier-row:has(.tier-badge--bronze) .logo-grid img[alt="Monster Energy"] {
     height: 110px !important;
 }
 .sponsor-popover-wrap {
@@ -2236,6 +2257,7 @@ body.blurred{ overflow: hidden;}
     display: grid;
     gap: 22px;
     grid-template-columns: repeat(12, 1fr);
+    margin-top: 6px;
 }
 
 .team-heading {
@@ -2253,6 +2275,7 @@ body.blurred{ overflow: hidden;}
     border: 1px solid var(--line);
     border-radius: 14px;
     overflow: hidden;
+    padding: 10px 0 16px;
     transition: border-color .2s ease, box-shadow .2s ease;
 }
 
@@ -2267,24 +2290,50 @@ body.blurred{ overflow: hidden;}
 
 .team-section__body {
     border-top: 1px solid var(--line);
-    padding: 14px 14px 18px;
+    padding: 20px 22px 24px;
 }
 
 .team-section__body .team-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 22px;
 }
 
 .team-section__body .member-card {
-    grid-column: span 1;
+    grid-column: span 12;
 }
 
-.team-section--leadership .team-section__body .team-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
+.team-section__body--static {
+    border-top: 1px solid var(--line);
+    padding: 14px 14px 18px;
 }
+
+.team-section--leadership-static {
+    grid-column: 1 / -1;
+    margin-bottom: 6px;
+}
+
+.team-section--leadership-static .team-grid {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.team-section--leadership-static .member-card {
+    grid-column: span 12;
+}
+
+.team-section__header {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    padding: 18px 22px 12px;
+}
+
+.team-section__header .team-section__title {
+    flex: 1;
+}
+
 
 .team-section__count {
     color: var(--muted);
@@ -2331,7 +2380,11 @@ body.blurred{ overflow: hidden;}
     margin-bottom: 6px;
 }
 
-.team-wrap { padding: 40px 20px 70px }
+.team-wrap { padding: 20px 20px 40px }
+
+.team-wrap.container--wide {
+    max-width: 1320px;
+}
 
 .tier {
     border-top: 1px solid var(--tier-line);
@@ -2443,10 +2496,10 @@ body.blurred{ overflow: hidden;}
 
 /* Responsive (Team Page) */
 @media (min-width: 640px) {
-    .member-card { grid-column: span 6; }
+    .team-section__body .member-card { grid-column: span 6; }
 }
 @media (min-width: 960px) {
-    .member-card { grid-column: span 4; }
+    .team-section__body .member-card { grid-column: span 4; }
 }
 
 @media (min-width: 900px){
