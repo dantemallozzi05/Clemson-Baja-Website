@@ -1385,7 +1385,7 @@ body.blurred{ overflow: hidden;}
     border-radius: 16px;
     box-shadow: 0 10px 24px rgba(0,0,0,0.35);
     display: grid;
-    grid-column: span 12;
+    grid-column: span 4;
     grid-template-columns: 88px 1fr;
     height: 100%;
     padding: 4px;
@@ -1430,7 +1430,6 @@ body.blurred{ overflow: hidden;}
     display: flex;
     gap: 6px;
     margin-top: 6px;
-
 }
 
 .member-info {
@@ -2300,7 +2299,6 @@ body.blurred{ overflow: hidden;}
 }
 
 .team-section {
-    background: color-mix(in srgb, var(--surface), black 8%);
     border-radius: 14px;
     overflow: hidden;
     padding: 10px 0 16px;
